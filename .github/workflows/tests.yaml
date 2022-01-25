@@ -1,0 +1,28 @@
+name: Harhhat tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          cache: yarn
+          cache-dependency-path: smart-contract/yarn.lock
+
+      - name: Yarn install
+        run: cd ./smart-contract && yarn install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run tests
+        run: cd ./smart-contract && yarn test-extended

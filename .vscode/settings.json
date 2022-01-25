@@ -1,0 +1,4 @@
+{
+  "solidity.packageDefaultDependenciesDirectory": "smart-contract/node_modules",
+  "editor.tabSize": 2
+}

@@ -1,0 +1,136 @@
+body {
+  @apply p-6;
+  @apply min-h-screen;
+
+  @apply font-sans;
+  @apply text-neutral-800;
+  @apply bg-gradient-to-b from-neutral-100 via-neutral-100 to-neutral-200;
+}
+
+a, a:link, a:visited {
+  @apply font-semibold;
+  @apply text-primary-600;
+
+  &:hover {
+    @apply underline;
+  }
+}
+
+strong {
+  @apply font-semibold;
+}
+
+main {
+  @apply flex flex-col;
+}
+
+#logo {
+  @apply m-auto;
+  @apply max-w-md;
+}
+
+span.emoji {
+  @apply text-2xl;
+}
+
+.error {
+  @apply flex flex-col;
+  @apply rounded-lg;
+  @apply p-3;
+  
+  @apply text-sm;
+  @apply bg-error-50;
+  @apply border border-error-200;
+  @apply shadow;
+  @apply text-error-500;
+
+  &::before {
+    content: 'Error';
+
+    @apply font-semibold;
+    @apply text-base;
+  }
+
+  button {
+    @apply inline-block;
+    @apply mt-3 ml-auto;
+    @apply px-2 py-1;
+    @apply rounded-md;
+
+    @apply text-xs;
+
+    @apply font-semibold;
+    @apply text-errortxt;
+    @apply bg-error-500;
+
+    &:hover {
+      @apply bg-error-400;
+    }
+  }
+}
+
+button {
+  @apply py-2 px-6;
+
+  @apply rounded-full;
+  
+  @apply font-semibold;
+  @apply bg-popupsbg;
+  @apply border border-neutral-200;
+  @apply shadow-sm;
+
+  &:hover {
+    @apply bg-neutral-100;
+  }
+
+  &.primary {
+    @apply text-primarytxt;
+    @apply bg-primary-500;
+    @apply border;
+
+    &:hover {
+      @apply bg-primary-600;
+    }
+
+    &:disabled {
+      @apply opacity-30;
+
+      &:hover {
+        @apply cursor-not-allowed;
+      }
+    }
+  }
+}
+
+input[type=text] {
+  @apply py-2 px-4;
+
+  @apply rounded-full;
+  
+  @apply font-mono font-semibold;
+  @apply text-primary-600;
+  @apply bg-popupsbg;
+  @apply border border-neutral-200;
+  @apply shadow-sm;
+  @apply outline-none;
+
+  &:focus {
+    @apply bg-neutral-50;
+    @apply border-primary-300;
+  }
+
+  &:disabled {
+    @apply opacity-50;
+
+    &:hover {
+      @apply cursor-not-allowed;
+    }
+  }
+}
+
+label {
+  @apply mt-4 mb-1 ml-1;
+
+  @apply font-semibold;
+  @apply text-sm text-primary-600;
+}
