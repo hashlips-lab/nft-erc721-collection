@@ -17,7 +17,7 @@ This project was created for educational purposes, please refer to the [LICENCE]
 - customizable minting DAPP (from basic branding to complete customization)
 
 ## YouTube tutorials
-- Basic usage, deploy a collection in a few minutes: _COMING SOON_
+- Deploy an NFT collection in 5 Min: https://youtu.be/ynZzPNkS1nk
 - _More videos coming soon..._
 
 ## Requirements
