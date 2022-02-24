@@ -2,18 +2,14 @@
 
 pragma solidity >=0.8.9 <0.9.0;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
+import 'erc721a/contracts/ERC721A.sol';
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-contract YourNftToken is ERC721, Ownable, ReentrancyGuard {
+contract YourNftToken is ERC721A, Ownable, ReentrancyGuard {
 
   using Strings for uint256;
-  using Counters for Counters.Counter;
-
-  Counters.Counter private supply;
 
   bytes32 public merkleRoot;
   mapping(address => bool) public whitelistClaimed;
@@ -37,7 +33,7 @@ contract YourNftToken is ERC721, Ownable, ReentrancyGuard {
     uint256 _maxSupply,
     uint256 _maxMintAmountPerTx,
     string memory _hiddenMetadataUri
-  ) ERC721(_tokenName, _tokenSymbol) {
+  ) ERC721A(_tokenName, _tokenSymbol) {
     cost = _cost;
     maxSupply = _maxSupply;
     maxMintAmountPerTx = _maxMintAmountPerTx;
@@ -46,17 +42,13 @@ contract YourNftToken is ERC721, Ownable, ReentrancyGuard {
 
   modifier mintCompliance(uint256 _mintAmount) {
     require(_mintAmount > 0 && _mintAmount <= maxMintAmountPerTx, "Invalid mint amount!");
-    require(supply.current() + _mintAmount <= maxSupply, "Max supply exceeded!");
+    require(totalSupply() + _mintAmount <= maxSupply, "Max supply exceeded!");
     _;
   }
 
   modifier mintPriceCompliance(uint256 _mintAmount) {
     require(msg.value >= cost * _mintAmount, "Insufficient funds!");
     _;
-  }
-
-  function totalSupply() public view returns (uint256) {
-    return supply.current();
   }
 
   function whitelistMint(uint256 _mintAmount, bytes32[] calldata _merkleProof) public payable mintCompliance(_mintAmount) mintPriceCompliance(_mintAmount) {
@@ -67,17 +59,17 @@ contract YourNftToken is ERC721, Ownable, ReentrancyGuard {
     require(MerkleProof.verify(_merkleProof, merkleRoot, leaf), "Invalid proof!");
 
     whitelistClaimed[msg.sender] = true;
-    _mintLoop(msg.sender, _mintAmount);
+    _safeMint(msg.sender, _mintAmount);
   }
 
   function mint(uint256 _mintAmount) public payable mintCompliance(_mintAmount) mintPriceCompliance(_mintAmount) {
     require(!paused, "The contract is paused!");
 
-    _mintLoop(msg.sender, _mintAmount);
+    _safeMint(msg.sender, _mintAmount);
   }
   
   function mintForAddress(uint256 _mintAmount, address _receiver) public mintCompliance(_mintAmount) onlyOwner {
-    _mintLoop(_receiver, _mintAmount);
+    _safeMint(_receiver, _mintAmount);
   }
 
   function walletOfOwner(address _owner)
@@ -87,14 +79,15 @@ contract YourNftToken is ERC721, Ownable, ReentrancyGuard {
   {
     uint256 ownerTokenCount = balanceOf(_owner);
     uint256[] memory ownedTokenIds = new uint256[](ownerTokenCount);
-    uint256 currentTokenId = 1;
+    uint256 currentTokenId = 0;
     uint256 ownedTokenIndex = 0;
 
-    while (ownedTokenIndex < ownerTokenCount && currentTokenId <= maxSupply) {
+    while (ownedTokenIndex < ownerTokenCount && currentTokenId < maxSupply) {
       address currentTokenOwner = ownerOf(currentTokenId);
 
       if (currentTokenOwner == _owner) {
-        ownedTokenIds[ownedTokenIndex] = currentTokenId;
+        // ERC721A uses token IDs starting from 0 internally...
+        ownedTokenIds[ownedTokenIndex] = currentTokenId + 1;
 
         ownedTokenIndex++;
       }
@@ -113,7 +106,8 @@ contract YourNftToken is ERC721, Ownable, ReentrancyGuard {
     returns (string memory)
   {
     require(
-      _exists(_tokenId),
+      // ERC721A uses token IDs starting from 0 internally...
+      _tokenId > 0 && _exists(_tokenId - 1),
       "ERC721Metadata: URI query for nonexistent token"
     );
 
@@ -178,13 +172,6 @@ contract YourNftToken is ERC721, Ownable, ReentrancyGuard {
     (bool os, ) = payable(owner()).call{value: address(this).balance}("");
     require(os);
     // =============================================================================
-  }
-
-  function _mintLoop(address _receiver, uint256 _mintAmount) internal {
-    for (uint256 i = 0; i < _mintAmount; i++) {
-      supply.increment();
-      _safeMint(_receiver, supply.current());
-    }
   }
 
   function _baseURI() internal view virtual override returns (string memory) {
