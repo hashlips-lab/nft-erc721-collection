@@ -120,6 +120,22 @@ if (process.env.NETWORK_MAINNET_URL !== undefined) {
   };
 }
 
+// Setup Mumbai network
+if (process.env.NETWORK_MUMBAI_URL !== undefined) {
+  config.networks!.mumbai = {
+    url: process.env.NETWORK_MUMBAI_URL,
+    accounts: [process.env.NETWORK_MUMBAI_PRIVATE_KEY!],
+  };
+}
+
+// Setup Polygon network
+if (process.env.NETWORK_POLYGON_URL !== undefined) {
+  config.networks!.polygon = {
+    url: process.env.NETWORK_POLYGON_URL,
+    accounts: [process.env.NETWORK_POLYGON_PRIVATE_KEY!],
+  };
+}
+
 export default config;
 
 /**
