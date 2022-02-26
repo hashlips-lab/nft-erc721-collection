@@ -3287,10 +3287,10 @@ env-paths@^2.2.0:
   resolved "https://registry.yarnpkg.com/env-paths/-/env-paths-2.2.1.tgz#420399d416ce1fbe9bc0a07c62fa68d67fd0f8f2"
   integrity sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==
 
-erc721a@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/erc721a/-/erc721a-2.2.0.tgz#299dd56eaf2a6cd3df95f6fe877888f7e5ffbe10"
-  integrity sha512-RPBH2P7NpDHTIn0Ix1+mvpq0yvszeQUc7vNazkMwf5JAbbvgjUV93CFTqtIGXbN6lwu9vQMoqXE0BgW5EqPKZQ==
+erc721a@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/erc721a/-/erc721a-3.0.0.tgz#1cf05961012c956aedd54449203da39f8397d55b"
+  integrity sha512-h6sbDZ9OBZwDqifjhdGWV6XJapr8aVyN3ZrqjsVKtzNcwzJyolcQrESaOrcvxrDPxbC7F0FmmWUqd80ZBKv+gA==
   dependencies:
     "@openzeppelin/contracts" "^4.4.2"
 
