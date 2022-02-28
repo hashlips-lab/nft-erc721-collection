@@ -52,6 +52,11 @@ task('generate-proof', 'Generates and prints out the whitelist proof for the giv
 .addPositionalParam('address', 'The public address');
 
 task('rename-contract', 'Renames the smart contract replacing all occurrences in source files', async (taskArgs: {newName: string}, hre) => {
+  // Validate new name
+  if (!/^([A-Z][A-Za-z0-9]+)$/.test(taskArgs.newName)) {
+    throw 'The contract name must be in PascalCase: https://en.wikipedia.org/wiki/Camel_case#Variations_and_synonyms';
+  }
+
   const oldContractFile = `${__dirname}/contracts/${CollectionConfig.contractName}.sol`;
   const newContractFile = `${__dirname}/contracts/${taskArgs.newName}.sol`;
 
