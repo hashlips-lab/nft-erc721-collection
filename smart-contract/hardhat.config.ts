@@ -98,6 +98,9 @@ const config: HardhatUserConfig = {
     },
   },
   networks: {
+    truffle: {
+      url: 'http://localhost:24012/rpc',
+    },
   },
   gasReporter: {
     enabled: process.env.REPORT_GAS !== undefined,
