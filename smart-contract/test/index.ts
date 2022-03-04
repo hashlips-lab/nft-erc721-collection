@@ -248,13 +248,19 @@ describe(CollectionConfig.contractName, function () {
     for (const i of [...Array(lastMintAmount).keys()].reverse()) {
       expectedWalletOfOwner.push(BigNumber.from(CollectionConfig.maxSupply - i));
     }
-    expect(await contract.walletOfOwner(await owner.getAddress())).deep.equal(expectedWalletOfOwner);
+    expect(await contract.walletOfOwner(
+      await owner.getAddress(),
+      {
+        // Set gas limit to the maximum value since this function should be used off-chain only and it would fail otherwise...
+        gasLimit: BigNumber.from('0xffffffffffffffff'),
+      },
+    )).deep.equal(expectedWalletOfOwner);
 
     // Try to mint over max supply (after sold-out)
     await expect(contract.connect(whitelistedUser).mint(1, {value: getPrice(SaleType.PUBLIC_SALE, 1)})).to.be.revertedWith('Max supply exceeded!');
 
     expect(await contract.totalSupply()).to.equal(CollectionConfig.maxSupply);
-  }).timeout(5000);
+  });
     
   it('Token URI generation', async function () {
     const uriPrefix = 'ipfs://__COLLECTION_CID__/';

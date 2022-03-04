@@ -77,11 +77,16 @@ contract YourNftToken is ERC721A, Ownable, ReentrancyGuard {
     uint256[] memory ownedTokenIds = new uint256[](ownerTokenCount);
     uint256 currentTokenId = _startTokenId();
     uint256 ownedTokenIndex = 0;
+    address latestOwnerAddress;
 
     while (ownedTokenIndex < ownerTokenCount && currentTokenId <= maxSupply) {
-      address currentTokenOwner = ownerOf(currentTokenId);
+      TokenOwnership memory ownership = _ownerships[currentTokenId];
 
-      if (currentTokenOwner == _owner) {
+      if (!ownership.burned && ownership.addr != address(0)) {
+        latestOwnerAddress = ownership.addr;
+      }
+
+      if (latestOwnerAddress == _owner) {
         ownedTokenIds[ownedTokenIndex] = currentTokenId;
 
         ownedTokenIndex++;
