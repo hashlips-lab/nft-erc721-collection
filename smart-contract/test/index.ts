@@ -240,7 +240,15 @@ describe(CollectionConfig.contractName, function () {
 
     expect(await contract.totalSupply()).to.equal(expectedTotalSupply);
 
-    await contract.mint(lastMintAmount, {value: getPrice(SaleType.PUBLIC_SALE, lastMintAmount)});
+    // Mint last tokens with owner address and test walletOfOwner(...)
+    await contract.connect(owner).mint(lastMintAmount, {value: getPrice(SaleType.PUBLIC_SALE, lastMintAmount)});
+    const expectedWalletOfOwner = [
+      BigNumber.from(1),
+    ];
+    for (const i of [...Array(lastMintAmount).keys()].reverse()) {
+      expectedWalletOfOwner.push(BigNumber.from(CollectionConfig.maxSupply - i));
+    }
+    expect(await contract.walletOfOwner(await owner.getAddress())).deep.equal(expectedWalletOfOwner);
 
     // Try to mint over max supply (after sold-out)
     await expect(contract.connect(whitelistedUser).mint(1, {value: getPrice(SaleType.PUBLIC_SALE, 1)})).to.be.revertedWith('Max supply exceeded!');
