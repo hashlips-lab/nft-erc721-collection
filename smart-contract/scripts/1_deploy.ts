@@ -11,6 +11,8 @@ async function main() {
   // manually to make sure everything is compiled
   // await hre.run('compile');
 
+  console.log('Deploying contract...');
+
   // We get the contract to deploy
   const Contract = await ethers.getContractFactory(CollectionConfig.contractName);
   const contract = await Contract.deploy(...ContractArguments) as NftContractType;
