@@ -1,4 +1,5 @@
-import { expect } from 'chai';
+import chai, { expect } from 'chai';
+import ChaiAsPromised from 'chai-as-promised';
 import { BigNumber, utils } from 'ethers';
 import { ethers } from 'hardhat';
 import { MerkleTree } from 'merkletreejs';
@@ -7,6 +8,8 @@ import CollectionConfig from './../config/CollectionConfig';
 import ContractArguments from '../config/ContractArguments';
 import { NftContractType } from '../lib/NftContractProvider';
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
+
+chai.use(ChaiAsPromised);
 
 enum SaleType {
   WHITELIST = CollectionConfig.whitelistSale.price,
@@ -129,7 +132,7 @@ describe(CollectionConfig.contractName, function () {
       1,
       merkleTree.getHexProof(keccak256(await whitelistedUser.getAddress())),
       {value: getPrice(SaleType.WHITELIST, 1).sub(1)},
-    )).to.be.revertedWith('Insufficient funds!');
+    )).to.be.rejectedWith(Error, 'insufficient funds for intrinsic transaction cost');
     // Pretending to be someone else
     await expect(contract.connect(holder).whitelistMint(
       1,
@@ -166,7 +169,7 @@ describe(CollectionConfig.contractName, function () {
     await contract.connect(holder).mint(2, {value: getPrice(SaleType.PRE_SALE, 2)});
     await contract.connect(whitelistedUser).mint(1, {value: getPrice(SaleType.PRE_SALE, 1)});
     // Sending insufficient funds
-    await expect(contract.connect(holder).mint(1, {value: getPrice(SaleType.PRE_SALE, 1).sub(1)})).to.be.revertedWith('Insufficient funds!');
+    await expect(contract.connect(holder).mint(1, {value: getPrice(SaleType.PRE_SALE, 1).sub(1)})).to.be.rejectedWith(Error, 'insufficient funds for intrinsic transaction cost');
     // Sending an invalid mint amount
     await expect(contract.connect(whitelistedUser).mint(
       await (await contract.maxMintAmountPerTx()).add(1),
@@ -177,7 +180,7 @@ describe(CollectionConfig.contractName, function () {
       1,
       [],
       {value: getPrice(SaleType.WHITELIST, 1)},
-    )).to.be.revertedWith('Insufficient funds!');
+    )).to.be.rejectedWith(Error, 'insufficient funds for intrinsic transaction cost');
     
     // Pause pre-sale
     await contract.setPaused(true);
@@ -196,19 +199,6 @@ describe(CollectionConfig.contractName, function () {
     await expect(contract.connect(externalUser).setMerkleRoot('0x0000000000000000000000000000000000000000000000000000000000000000')).to.be.revertedWith('Ownable: caller is not the owner');
     await expect(contract.connect(externalUser).setWhitelistMintEnabled(false)).to.be.revertedWith('Ownable: caller is not the owner');
     await expect(contract.connect(externalUser).withdraw()).to.be.revertedWith('Ownable: caller is not the owner');
-  });
-    
-  it('Token URI generation', async function () {
-    const uriPrefix = 'ipfs://__COLLECTION_CID__/';
-    const uriSuffix = '.json';
-
-    expect(await contract.tokenURI(1)).to.equal(CollectionConfig.hiddenMetadataUri);
-
-    // Reveal collection
-    await contract.setUriPrefix(uriPrefix);
-    await contract.setRevealed(true);
-
-    expect(await contract.tokenURI(1)).to.equal(`${uriPrefix}1${uriSuffix}`);
   });
     
   it('Wallet of owner', async function () {
@@ -244,15 +234,50 @@ describe(CollectionConfig.contractName, function () {
 
     await Promise.all([...Array(iterations).keys()].map(async () => await contract.connect(whitelistedUser).mint(maxMintAmountPerTx, {value: getPrice(SaleType.PUBLIC_SALE, maxMintAmountPerTx)})));
 
-    // Try to mint over max supply
+    // Try to mint over max supply (before sold-out)
     await expect(contract.connect(holder).mint(lastMintAmount + 1, {value: getPrice(SaleType.PUBLIC_SALE, lastMintAmount + 1)})).to.be.revertedWith('Max supply exceeded!');
+    await expect(contract.connect(holder).mint(lastMintAmount + 2, {value: getPrice(SaleType.PUBLIC_SALE, lastMintAmount + 2)})).to.be.revertedWith('Max supply exceeded!');
 
     expect(await contract.totalSupply()).to.equal(expectedTotalSupply);
 
-    await contract.mint(lastMintAmount, {value: getPrice(SaleType.PUBLIC_SALE, lastMintAmount)});
+    // Mint last tokens with owner address and test walletOfOwner(...)
+    await contract.connect(owner).mint(lastMintAmount, {value: getPrice(SaleType.PUBLIC_SALE, lastMintAmount)});
+    const expectedWalletOfOwner = [
+      BigNumber.from(1),
+    ];
+    for (const i of [...Array(lastMintAmount).keys()].reverse()) {
+      expectedWalletOfOwner.push(BigNumber.from(CollectionConfig.maxSupply - i));
+    }
+    expect(await contract.walletOfOwner(
+      await owner.getAddress(),
+      {
+        // Set gas limit to the maximum value since this function should be used off-chain only and it would fail otherwise...
+        gasLimit: BigNumber.from('0xffffffffffffffff'),
+      },
+    )).deep.equal(expectedWalletOfOwner);
 
+    // Try to mint over max supply (after sold-out)
     await expect(contract.connect(whitelistedUser).mint(1, {value: getPrice(SaleType.PUBLIC_SALE, 1)})).to.be.revertedWith('Max supply exceeded!');
 
     expect(await contract.totalSupply()).to.equal(CollectionConfig.maxSupply);
-  }).timeout(60000);
+  });
+    
+  it('Token URI generation', async function () {
+    const uriPrefix = 'ipfs://__COLLECTION_CID__/';
+    const uriSuffix = '.json';
+    const totalSupply = await contract.totalSupply();
+
+    expect(await contract.tokenURI(1)).to.equal(CollectionConfig.hiddenMetadataUri);
+
+    // Reveal collection
+    await contract.setUriPrefix(uriPrefix);
+    await contract.setRevealed(true);
+
+    // ERC721A uses token IDs starting from 0 internally...
+    await expect(contract.tokenURI(0)).to.be.revertedWith('ERC721Metadata: URI query for nonexistent token');
+
+    // Testing first and last minted tokens
+    expect(await contract.tokenURI(1)).to.equal(`${uriPrefix}1${uriSuffix}`);
+    expect(await contract.tokenURI(totalSupply)).to.equal(`${uriPrefix}${totalSupply}${uriSuffix}`);
+  });
 });
