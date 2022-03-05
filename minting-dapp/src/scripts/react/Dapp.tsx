@@ -182,7 +182,7 @@ export default class Dapp extends React.Component<Props, State> {
                   <div className="collection-sold-out">
                     <h2>Tokens have been <strong>sold out</strong>! <span className="emoji">🥳</span></h2>
 
-                    You can buy from our beloved holders on <a href={this.generateOpenSeaUrl()} target="_blank">OpenSea</a>.
+                    You can buy from our beloved holders on <a href={this.generateMarketplaceUrl()} target="_blank">{CollectionConfig.marketplaceConfig.name}</a>.
                   </div>
                 }
               </>
@@ -260,11 +260,9 @@ export default class Dapp extends React.Component<Props, State> {
     return this.state.networkConfig.blockExplorer.generateContractUrl(CollectionConfig.contractAddress!);
   }
 
-  private generateOpenSeaUrl(): string
+  private generateMarketplaceUrl(): string
   {
-    const subdomain = this.state.network?.chainId === CollectionConfig.mainnet.chainId ? 'www' : 'testnets';
-
-    return `https://${subdomain}.opensea.io/` + (CollectionConfig.openSeaSlug ? 'collection/' + CollectionConfig.openSeaSlug : null);
+    return CollectionConfig.marketplaceConfig.generateCollectionUrl(CollectionConfig.marketplaceIdentifier, !this.isNotMainnet());
   }
 
   private async connectWallet(): Promise<void>

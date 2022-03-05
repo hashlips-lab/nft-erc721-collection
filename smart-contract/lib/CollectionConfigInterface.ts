@@ -1,4 +1,5 @@
 import NetworkConfigInterface from '../lib/NetworkConfigInterface';
+import MarketplaceConfigInterface from '../lib/MarketplaceConfigInterface';
 
 interface SaleConfig {
   price: number;
@@ -18,5 +19,6 @@ export default interface CollectionConfigInterface {
   publicSale: SaleConfig;
   contractAddress: string|null;
   whitelistAddresses: string[];
-  openSeaSlug: string|null;
+  marketplaceIdentifier: string;
+  marketplaceConfig: MarketplaceConfigInterface,
 };

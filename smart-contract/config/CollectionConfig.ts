@@ -1,5 +1,6 @@
 import CollectionConfigInterface from '../lib/CollectionConfigInterface';
 import { ethereumTestnet, ethereumMainnet } from '../lib/Networks';
+import { opensea } from '../lib/Marketplaces';
 import whitelistAddresses from './whitelist.json';
 
 const CollectionConfig: CollectionConfigInterface = {
@@ -26,7 +27,8 @@ const CollectionConfig: CollectionConfigInterface = {
     maxMintAmountPerTx: 5,
   },
   contractAddress: null,
-  openSeaSlug: 'my-nft-token',
+  marketplaceIdentifier: 'my-nft-token',
+  marketplaceConfig: opensea,
   whitelistAddresses: whitelistAddresses,
 };
 
