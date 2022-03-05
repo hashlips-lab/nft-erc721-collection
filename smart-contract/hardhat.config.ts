@@ -108,7 +108,11 @@ const config: HardhatUserConfig = {
     coinmarketcap: process.env.GAS_REPORTER_COIN_MARKET_CAP_API_KEY,
   },
   etherscan: {
-    apiKey: process.env.BLOCK_EXPLORER_API_KEY,
+    apiKey: {
+      // Ethereum
+      rinkeby: process.env.BLOCK_EXPLORER_API_KEY,
+      mainnet: process.env.BLOCK_EXPLORER_API_KEY,
+    },
   },
 };
 
