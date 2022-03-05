@@ -1,9 +1,14 @@
+import NetworkConfigInterface from '../lib/NetworkConfigInterface';
+
 interface SaleConfig {
   price: number;
   maxMintAmountPerTx: number;
 };
+
 export default interface CollectionConfigInterface {
-  contractName: string,
+  testnet: NetworkConfigInterface;
+  mainnet: NetworkConfigInterface;
+  contractName: string;
   tokenName: string;
   tokenSymbol: string;
   hiddenMetadataUri: string;
@@ -11,7 +16,7 @@ export default interface CollectionConfigInterface {
   whitelistSale: SaleConfig;
   preSale: SaleConfig;
   publicSale: SaleConfig;
-  contractAddress: string|null,
-  whitelistAddresses: string[],
-  openSeaSlug: string|null,
+  contractAddress: string|null;
+  whitelistAddresses: string[];
+  openSeaSlug: string|null;
 };

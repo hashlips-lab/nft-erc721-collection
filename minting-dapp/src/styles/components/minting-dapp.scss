@@ -13,7 +13,7 @@
     @apply border border-neutral-50;
     @apply shadow;
 
-    .use-etherscan {
+    .use-block-explorer {
       &:not(:first-child) {
         @apply mt-3;
       }
