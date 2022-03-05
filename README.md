@@ -9,7 +9,7 @@ This project was created for educational purposes, please refer to the [LICENCE]
 ## Main features
 - extremely high gas efficiency (users are going to pay lower gas fees compared to traditional collections)
 - whitelist support with customizable list size (using a Merkle Tree for verification)
-- automated contract verification through block explorer (e.g. Etherscan)
+- automated contract verification through block explorers (e.g. Etherscan)
 - simple CLI commands that guide you through all the sale steps (whitelist, pre-sale, public sale)
 - built as a Hardhat project with TypeScript support for a better development experience
 - includes a fully-featured minting DAPP (React + TypeScript + SCSS + Webpack)
