@@ -31,12 +31,12 @@ jobs:
         uses: actions/setup-node@v2
         with:
           cache: yarn
-          cache-dependency-path: mining-dapp/yarn.lock
+          cache-dependency-path: minting-dapp/yarn.lock
 
       - name: Yarn install (DAPP)
-        run: cd ./mining-dapp && yarn install
+        run: cd ./minting-dapp && yarn install
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Compile smart contract
-        run: cd ./mining-dapp && yarn build
+        run: cd ./minting-dapp && yarn build
