@@ -1,9 +1,24 @@
 import NetworkConfigInterface from './NetworkConfigInterface';
 
+/*
+ * Local networks
+ */
+export const hardhatLocal: NetworkConfigInterface = {
+  chainId: 31337,
+  symbol: 'ETH (test)',
+  blockExplorer: {
+    name: 'Block explorer (not available for local chains)',
+    generateContractUrl: (contractAddress: string) => `#`,
+  },
+}
+
+/*
+ * Ethereum
+ */
 export const ethereumTestnet: NetworkConfigInterface = {
   chainId: 4,
   symbol: 'ETH (test)',
-  blockExplorer:{
+  blockExplorer: {
     name: 'Etherscan (Rinkeby)',
     generateContractUrl: (contractAddress: string) => `https://rinkeby.etherscan.io/address/${contractAddress}`,
   },
@@ -18,10 +33,13 @@ export const ethereumMainnet: NetworkConfigInterface = {
   },
 }
 
+/*
+ * Polygon
+ */
 export const polygonTestnet: NetworkConfigInterface = {
   chainId: 80001,
   symbol: 'MATIC (test)',
-  blockExplorer:{
+  blockExplorer: {
     name: 'Polygonscan (Mumbai)',
     generateContractUrl: (contractAddress: string) => `https://mumbai.polygonscan.com/address/${contractAddress}`,
   },
