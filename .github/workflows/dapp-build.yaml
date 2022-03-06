@@ -1,0 +1,47 @@
+name: DAPP build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  dapp_build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js (Smart contract)
+        uses: actions/setup-node@v2
+        with:
+          cache: yarn
+          cache-dependency-path: smart-contract/yarn.lock
+
+      - name: Yarn install (Smart contract)
+        run: cd ./smart-contract && yarn install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Compile smart contract
+        run: cd ./smart-contract && yarn compile
+
+      - name: Setup Node.js (DAPP)
+        uses: actions/setup-node@v2
+        with:
+          cache: yarn
+          cache-dependency-path: minting-dapp/yarn.lock
+
+      - name: Yarn install (DAPP)
+        run: cd ./minting-dapp && yarn install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Compile smart contract
+        run: cd ./minting-dapp && yarn build
