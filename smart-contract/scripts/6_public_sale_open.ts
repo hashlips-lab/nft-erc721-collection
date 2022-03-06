@@ -9,7 +9,7 @@ async function main() {
   // Update sale price (if needed)
   const publicSalePrice = utils.parseEther(CollectionConfig.publicSale.price.toString());
   if (!await (await contract.cost()).eq(publicSalePrice)) {
-    console.log(`Updating the token price to ${CollectionConfig.publicSale.price} ETH...`);
+    console.log(`Updating the token price to ${CollectionConfig.publicSale.price} ${CollectionConfig.mainnet.symbol}...`);
 
     await (await contract.setCost(publicSalePrice)).wait();
   }

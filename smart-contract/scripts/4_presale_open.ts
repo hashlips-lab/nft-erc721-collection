@@ -9,7 +9,7 @@ async function main() {
   // Update sale price (if needed)
   const preSalePrice = utils.parseEther(CollectionConfig.preSale.price.toString());
   if (!await (await contract.cost()).eq(preSalePrice)) {
-    console.log(`Updating the token price to ${CollectionConfig.preSale.price} ETH...`);
+    console.log(`Updating the token price to ${CollectionConfig.preSale.price} ${CollectionConfig.mainnet.symbol}...`);
 
     await (await contract.setCost(preSalePrice)).wait();
   }

@@ -168,6 +168,7 @@ export default class Dapp extends React.Component<Props, State> {
                 />
                 {this.state.totalSupply < this.state.maxSupply ?
                   <MintWidget
+                    networkConfig={this.state.networkConfig}
                     maxSupply={this.state.maxSupply}
                     totalSupply={this.state.totalSupply}
                     tokenPrice={this.state.tokenPrice}

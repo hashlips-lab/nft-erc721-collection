@@ -1,7 +1,9 @@
 import { utils, BigNumber } from 'ethers';
 import React from 'react';
+import NetworkConfigInterface from '../../../../smart-contract/lib/NetworkConfigInterface';
 
 interface Props {
+  networkConfig: NetworkConfigInterface;
   maxSupply: number;
   totalSupply: number;
   tokenPrice: BigNumber;
@@ -68,7 +70,7 @@ export default class MintWidget extends React.Component<Props, State> {
             </div>
 
             <div className="price">
-              <strong>Total price:</strong> {utils.formatEther(this.props.tokenPrice.mul(this.state.mintAmount))} ETH
+              <strong>Total price:</strong> {utils.formatEther(this.props.tokenPrice.mul(this.state.mintAmount))} {this.props.networkConfig.symbol}
             </div>
 
             <div className="controls">
