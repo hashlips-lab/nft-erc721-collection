@@ -43,5 +43,5 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Compile smart contract
+      - name: Build DAPP
         run: cd ./minting-dapp && yarn build
