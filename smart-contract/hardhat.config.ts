@@ -100,6 +100,7 @@ const config: HardhatUserConfig = {
   networks: {
     truffle: {
       url: 'http://localhost:24012/rpc',
+      timeout: 60000,
     },
   },
   gasReporter: {
