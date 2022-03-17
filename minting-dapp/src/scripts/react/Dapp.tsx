@@ -16,8 +16,8 @@ interface Props {
 
 interface State {
   userAddress: string|null;
-  network: ethers.providers.Network|null,
-  networkConfig: NetworkConfigInterface,
+  network: ethers.providers.Network|null;
+  networkConfig: NetworkConfigInterface;
   totalSupply: number;
   maxSupply: number;
   maxMintAmountPerTx: number;
@@ -27,7 +27,7 @@ interface State {
   isUserInWhitelist: boolean;
   merkleProofManualAddress: string;
   merkleProofManualAddressFeedbackMessage: string|JSX.Element|null;
-  errorMessage: string|JSX.Element|null,
+  errorMessage: string|JSX.Element|null;
 }
 
 const defaultState: State = {

@@ -2,15 +2,15 @@ import { utils, BigNumber } from 'ethers';
 import React from 'react';
 
 interface Props {
-  maxSupply: number,
-  totalSupply: number,
-  tokenPrice: BigNumber,
-  maxMintAmountPerTx: number,
-  isPaused: boolean,
-  isWhitelistMintEnabled: boolean,
-  isUserInWhitelist: boolean,
-  mintTokens(mintAmount: number): Promise<void>,
-  whitelistMintTokens(mintAmount: number): Promise<void>,
+  maxSupply: number;
+  totalSupply: number;
+  tokenPrice: BigNumber;
+  maxMintAmountPerTx: number;
+  isPaused: boolean;
+  isWhitelistMintEnabled: boolean;
+  isUserInWhitelist: boolean;
+  mintTokens(mintAmount: number): Promise<void>;
+  whitelistMintTokens(mintAmount: number): Promise<void>;
 }
 
 interface State {
