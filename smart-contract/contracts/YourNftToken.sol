@@ -34,9 +34,9 @@ contract YourNftToken is ERC721A, Ownable, ReentrancyGuard {
     uint256 _maxMintAmountPerTx,
     string memory _hiddenMetadataUri
   ) ERC721A(_tokenName, _tokenSymbol) {
-    cost = _cost;
+    setCost(_cost);
     maxSupply = _maxSupply;
-    maxMintAmountPerTx = _maxMintAmountPerTx;
+    setMaxMintAmountPerTx(_maxMintAmountPerTx);
     setHiddenMetadataUri(_hiddenMetadataUri);
   }
 
