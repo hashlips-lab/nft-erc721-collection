@@ -1,15 +1,5 @@
 const colors = require('tailwindcss/colors');
 
-// Setting some custom names
-colors.popupsbg = colors.white;
-colors.neutral = colors.slate;
-colors.primary = colors.indigo;
-colors.primarytxt = colors.white;
-colors.warning = colors.yellow;
-colors.warningtxt = colors.black;
-colors.error = colors.red;
-colors.errortxt = colors.white;
-
 module.exports = {
     mode: 'jit',
     content: [
@@ -17,8 +7,18 @@ module.exports = {
         './public/index.html',
     ],
     theme: {
-        extend: {},
-        colors,
+        extend: {
+            colors: {
+                popupsbg: colors.white,
+                neutral: colors.slate,
+                primary: colors.indigo,
+                primarytxt: colors.white,
+                warning: colors.yellow,
+                warningtxt: colors.black,
+                error: colors.red,
+                errortxt: colors.white,
+            },
+        },
     },
     variants: {},
     plugins: [],
