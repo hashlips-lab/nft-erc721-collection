@@ -34,9 +34,9 @@ contract YourNftToken is ERC721A, Ownable, ReentrancyGuard {
     uint256 _maxMintAmountPerTx,
     string memory _hiddenMetadataUri
   ) ERC721A(_tokenName, _tokenSymbol) {
-    cost = _cost;
+    setCost(_cost);
     maxSupply = _maxSupply;
-    maxMintAmountPerTx = _maxMintAmountPerTx;
+    setMaxMintAmountPerTx(_maxMintAmountPerTx);
     setHiddenMetadataUri(_hiddenMetadataUri);
   }
 
@@ -99,8 +99,8 @@ contract YourNftToken is ERC721A, Ownable, ReentrancyGuard {
   }
 
   function _startTokenId() internal view virtual override returns (uint256) {
-        return 1;
-    }
+    return 1;
+  }
 
   function tokenURI(uint256 _tokenId) public view virtual override returns (string memory) {
     require(_exists(_tokenId), 'ERC721Metadata: URI query for nonexistent token');
