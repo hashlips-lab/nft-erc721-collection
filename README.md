@@ -17,8 +17,15 @@ This project was created for educational purposes, please refer to the [LICENCE]
 - customizable minting DAPP (from basic branding to complete customization)
 
 ## YouTube tutorials
-- Deploy an NFT collection in 5 Min: https://youtu.be/ynZzPNkS1nk
-- _More videos coming soon..._
+
+|Lesson ID|Description|Video link|
+|---|---|---|
+|`01a`|Basic setup on **Windows 10**|https://youtu.be/zjlg-0622PU|
+|`01b`|Basic setup on **macOS Catalina (Intel-based)**|https://youtu.be/acqXzKN5Xys|
+|`01c`|Basic setup on **Linux**|https://youtu.be/imuqi6Vg3Zw|
+|`02`|Speedrun: create and deploy a smart contract + DAPP (v1.x)|https://youtu.be/VpXJZSqLO8A|
+
+_More videos coming soon..._
 
 ## Requirements
 
