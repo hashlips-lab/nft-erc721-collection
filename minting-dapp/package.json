@@ -1,6 +1,6 @@
 {
     "name": "@hashlips-lab/nft-erc721-collection-dapp",
-    "version": "1.0.0",
+    "version": "2.1.0",
     "devDependencies": {
         "@babel/preset-react": "^7.0.0",
         "@metamask/detect-provider": "^1.2.0",
