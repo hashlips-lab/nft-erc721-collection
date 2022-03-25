@@ -1,11 +1,11 @@
 import CollectionConfigInterface from '../lib/CollectionConfigInterface';
-import { ethereumTestnet, ethereumMainnet } from '../lib/Networks';
-import { openSea } from '../lib/Marketplaces';
+import * as Networks from '../lib/Networks';
+import * as Marketplaces from '../lib/Marketplaces';
 import whitelistAddresses from './whitelist.json';
 
 const CollectionConfig: CollectionConfigInterface = {
-  testnet: ethereumTestnet,
-  mainnet: ethereumMainnet,
+  testnet: Networks.ethereumTestnet,
+  mainnet: Networks.ethereumMainnet,
   // The contract name can be updated using the following command:
   // yarn rename-contract NEW_CONTRACT_NAME
   // Please DO NOT change it manually!
@@ -28,7 +28,7 @@ const CollectionConfig: CollectionConfigInterface = {
   },
   contractAddress: null,
   marketplaceIdentifier: 'my-nft-token',
-  marketplaceConfig: openSea,
+  marketplaceConfig: Marketplaces.openSea,
   whitelistAddresses: whitelistAddresses,
 };
 
