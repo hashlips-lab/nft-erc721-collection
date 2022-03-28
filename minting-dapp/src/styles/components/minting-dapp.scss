@@ -108,8 +108,8 @@
         @apply w-full;
         
         @apply font-semibold;
-        @apply truncate;
         @apply text-center;
+        overflow-wrap: anywhere;
       }
     }
 
