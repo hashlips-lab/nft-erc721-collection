@@ -17,10 +17,12 @@ interface Props {
 
 interface State {
   mintAmount: number;
+  isLoading: boolean;
 }
 
 const defaultState: State = {
   mintAmount: 1,
+  isLoading: false,
 };
 
 export default class MintWidget extends React.Component<Props, State> {
@@ -52,7 +54,9 @@ export default class MintWidget extends React.Component<Props, State> {
 
   private async mint(): Promise<void> {
     if (!this.props.isPaused) {
-      await this.props.mintTokens(this.state.mintAmount);
+      this.setState({ isLoading: true });
+      await this.props.mintTokens(this.state.mintAmount)
+      this.setState({ isLoading: false });
 
       return;
     }
@@ -74,10 +78,10 @@ export default class MintWidget extends React.Component<Props, State> {
             </div>
 
             <div className="controls">
-              <button className="decrease" onClick={() => this.decrementMintAmount()}>-</button>
+              <button className="decrease" onClick={() => this.decrementMintAmount()} disabled={this.state.isLoading}>-</button>
               <span className="mint-amount">{this.state.mintAmount}</span>
-              <button className="increase" onClick={() => this.incrementMintAmount()}>+</button>
-              <button className="primary" onClick={() => this.mint()}>Mint</button>
+              <button className="increase" onClick={() => this.incrementMintAmount()} disabled={this.state.isLoading}>+</button>
+              <button className="primary" onClick={() => this.mint()} disabled={this.state.isLoading}>Mint</button>
             </div>
           </div>
           :

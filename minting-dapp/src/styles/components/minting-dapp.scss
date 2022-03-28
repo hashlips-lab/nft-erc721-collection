@@ -221,4 +221,31 @@
       }
     }
   }
+
+  .mint-initiated {
+    @apply flex flex-col;
+    @apply rounded-lg;
+    @apply p-3;
+    @apply text-sm;
+    @apply bg-green-50;
+    @apply border border-green-200;
+    @apply shadow;
+    @apply text-green-700;
+
+    p {
+      @apply py-2;
+    }
+
+    ul {
+      @apply list-disc;
+      @apply list-inside;
+    }
+
+    &::before {
+      content: 'Mint Initiated!';
+
+      @apply font-semibold;
+      @apply text-base;
+    }
+  }
 }
