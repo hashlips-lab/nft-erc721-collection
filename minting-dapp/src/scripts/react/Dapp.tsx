@@ -97,7 +97,9 @@ export default class Dapp extends React.Component<Props, State> {
   async whitelistMintTokens(amount: number): Promise<void>
   {
     try {
-      await this.contract.whitelistMint(amount, Whitelist.getProofForAddress(this.state.userAddress!), {value: this.state.tokenPrice.mul(amount)});
+      this.setState({ mintedTransaction: null });
+      let transaction = await this.contract.whitelistMint(amount, Whitelist.getProofForAddress(this.state.userAddress!), {value: this.state.tokenPrice.mul(amount)});
+      this.setState({ mintedTransaction: transaction.hash });
     } catch (e) {
       this.setError(e);
     }
