@@ -111,7 +111,7 @@ export default class Dapp extends React.Component<Props, State> {
 
   private isSoldOut(): boolean
   {
-    return this.state.maxSupply !== 0 && this.state.totalSupply < this.state.maxSupply;
+    return this.state.maxSupply !== 0 && this.state.totalSupply >= this.state.maxSupply;
   }
 
   private isNotMainnet(): boolean
@@ -165,8 +165,9 @@ export default class Dapp extends React.Component<Props, State> {
                   isPaused={this.state.isPaused}
                   isWhitelistMintEnabled={this.state.isWhitelistMintEnabled}
                   isUserInWhitelist={this.state.isUserInWhitelist}
+                  isSoldOut={this.isSoldOut()}
                 />
-                {this.state.totalSupply < this.state.maxSupply ?
+                {!this.isSoldOut() ?
                   <MintWidget
                     networkConfig={this.state.networkConfig}
                     maxSupply={this.state.maxSupply}
@@ -198,9 +199,7 @@ export default class Dapp extends React.Component<Props, State> {
               </div>
             }
           </>
-        : null}
-
-        {!this.isWalletConnected() || !this.isSoldOut() ?
+        :
           <div className="no-wallet">
             {!this.isWalletConnected() ? <button className="primary" disabled={this.provider === undefined} onClick={() => this.connectWallet()}>Connect Wallet</button> : null}
             
@@ -225,7 +224,7 @@ export default class Dapp extends React.Component<Props, State> {
               </div>
               : null}
           </div>
-          : null}
+        }
       </>
     );
   }
