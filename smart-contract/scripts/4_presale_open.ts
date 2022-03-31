@@ -27,6 +27,14 @@ async function main() {
 
     await (await contract.setPaused(false)).wait();
   }
+  
+  // Disable whitelist sale (if needed)
+  if (await contract.whitelistMintEnabled()) {
+    console.log('Disabling whitelist sale...');
+
+    await (await contract.setWhitelistMintEnabled(false)).wait();
+    console.log('Whitelist sale has been disabled!');
+  }
 
   console.log('Pre-sale is now open!');
 }
