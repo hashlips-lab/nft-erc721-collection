@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Community Support
+    url: https://github.com/hashlips-lab/nft-erc721-collection/discussions
+    about: Please ask and answer questions here.
+  - name: HashLips Discord Server
+    url: https://discord.gg/qh6MWhMJDN
+    about: Here you can ask live support and/or recruit developers (or other team members) for your projects.
