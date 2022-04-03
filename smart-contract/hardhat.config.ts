@@ -14,8 +14,8 @@ dotenv.config();
 
 /*
  * If you have issues with stuck transactions or you simply want to invest in
- * higher gas fees in order to make sure your transactions will run smother and
- * faster, then you can update the followind value.
+ * higher gas fees in order to make sure your transactions will run smoother
+ * and faster, then you can update the followind value.
  * This value is used by default in any network defined in this project, but
  * please make sure to add it manually if you define any custom network.
  * 
