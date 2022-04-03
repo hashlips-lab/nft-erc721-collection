@@ -29,7 +29,7 @@ const CollectionConfig: CollectionConfigInterface = {
   contractAddress: null,
   marketplaceIdentifier: 'my-nft-token',
   marketplaceConfig: Marketplaces.openSea,
-  whitelistAddresses: whitelistAddresses,
+  whitelistAddresses,
 };
 
 export default CollectionConfig;
