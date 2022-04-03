@@ -10,6 +10,8 @@ assignees: ''
 <!--
 Hi, thank you for taking time to report a bug. Please make sure to provide all the information requested below, time is the most valuable resource we have, that's why incomplete or invalid issues might be closed directly.
 
+If you simply want to ask a question like "how to customize X", "how to implement Y" or anything which is not a but report, please use the Discussions section.
+
 Here is how to get the version numbers requested below:
 * project version: is the one you downloaded or cloned from the repo
 * operating system and version: https://www.google.com/search?q=how+to+know+know+operating+system+version
@@ -21,6 +23,8 @@ Here is how to get the version numbers requested below:
 
 **General information**
 
+| Description | Value |
+| --- | --- |
 | Project version | X.Y.Z |
 | Operating system and version | ??? |
 | NodeJS version | X.Y.Z |
