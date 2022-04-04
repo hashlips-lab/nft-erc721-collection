@@ -8,7 +8,7 @@ async function main() {
   // Attach to deployed contract
   const contract = await NftContractProvider.getContract();
 
-  // Update root hash (if changed)
+  // Update URI prefix (if changed)
   if ((await contract.uriPrefix()) !== process.env.COLLECTION_URI_PREFIX) {
     console.log(`Updating the URI prefix to: ${process.env.COLLECTION_URI_PREFIX}`);
 
