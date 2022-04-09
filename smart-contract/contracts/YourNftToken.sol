@@ -88,6 +88,7 @@ contract YourNftToken is ERC721A, Ownable, ReentrancyGuard {
           ownedTokenIndex++;
         }
       }
+      
       currentTokenId++;
     }
 
