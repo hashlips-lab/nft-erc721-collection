@@ -27,7 +27,9 @@ This project was created for educational purposes, please refer to the [LICENCE]
 |`03`|The smart contract project|https://youtu.be/XToWWExBLXE|
 |`04`|The minting DAPP project|https://youtu.be/gs9mVwkn8u4|
 |`05`|Configuration and security|https://youtu.be/pkA86GHU_xw|
-|`06a`|Managing the collection without leaving Visual Studio Code|https://youtu.be/yOVKEeRMJSs|
+|`06`|Managing the collection without leaving Visual Studio Code|https://youtu.be/yOVKEeRMJSs|
+|`07`|Managing the contract using Truffle Dashboard|https://youtu.be/fwdIA5UuPmM|
+|`08`|Running smart contract functions manually on the block explorer|https://youtu.be/zhvTJhBbtnE|
 
 _More videos coming soon..._
 
