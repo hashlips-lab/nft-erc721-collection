@@ -40,26 +40,35 @@ module.exports = {
         btn: {
           txt: colors.slate[800],
           bg: colors.white,
-          hover_bg: colors.slate[100],
           border: colors.slate[200],
+          hover_txt: colors.slate[800],
+          hover_bg: colors.slate[100],
+          hover_border: colors.slate[200],
         },
         btn_primary: {
           txt: colors.white,
           bg: colors.indigo[500],
+          border: colors.indigo[500],
+          hover_txt: colors.white,
           hover_bg: colors.indigo[600],
+          hover_border: colors.indigo[600],
         },
         btn_error: {
           txt: colors.white,
           bg: colors.red[500],
+          border: colors.red[500],
+          hover_txt: colors.white,
           hover_bg: colors.red[600],
+          hover_border: colors.red[600],
         },
         label: colors.indigo[600],
         txt_input: {
-          bg: colors.white,
           txt: colors.indigo[600],
+          bg: colors.white,
+          border: colors.slate[200],
+          focus_txt: colors.indigo[600],
           focus_bg: colors.slate[50],
           focus_border: colors.indigo[300],
-          border: colors.slate[200],
         },
         
         // Whitelist proof widget
