@@ -9,8 +9,8 @@
     @apply px-4 py-6;
     @apply rounded-lg;
     
-    @apply bg-popupsbg;
-    @apply border border-neutral-50;
+    @apply text-popups-txt;
+    @apply bg-popups-bg;
     @apply shadow;
 
     .use-block-explorer {
@@ -25,7 +25,7 @@
         @apply mx-auto my-3;
         @apply w-12;
 
-        @apply border-t border-neutral-300;
+        @apply border-t-2 border-popups-internal_border;
       }
     }
 
@@ -35,7 +35,7 @@
 
       h2 {
         @apply font-semibold;
-        @apply text-primary-600 text-xl text-center;
+        @apply text-titles text-xl text-center;
       }
 
       p {
@@ -47,8 +47,8 @@
         @apply mt-4;
         @apply p-3;
         
-        @apply text-sm;
-        @apply bg-primary-100;
+        @apply text-wl_message-txt text-sm;
+        @apply bg-wl_message-bg;
       }
 
       input {
@@ -59,22 +59,23 @@
       button {
         @apply rounded-b-lg;
         @apply rounded-t-none;
+        @apply border-t-0;
       }
     }
   }
 
   .collection-not-ready {
+    @apply flex items-center justify-center;
     @apply px-6 py-4;
     @apply rounded-lg;
 
-    @apply text-sm;
-    @apply bg-popupsbg;
-    @apply border border-neutral-50;
+    @apply text-popups-txt text-sm;
+    @apply bg-popups-bg;
     @apply shadow;
 
     .spinner {
       @apply inline;
-      @apply -ml-1 mr-3 h-8 w-8 text-primary-500;
+      @apply -ml-1 mr-3 h-8 w-8 text-loading_spinner;
       @apply animate-spin;
     }
   }
@@ -84,9 +85,8 @@
     @apply rounded-lg;
 
     @apply font-mono;
-    @apply text-sm;
-    @apply bg-popupsbg;
-    @apply border border-neutral-50;
+    @apply text-popups-txt text-sm;
+    @apply bg-popups-bg;
     @apply shadow;
 
     & > * {
@@ -94,7 +94,7 @@
       @apply px-6 py-4;
 
       .label {
-        @apply text-xs text-primary-600;
+        @apply text-xs text-label;
       }
     }
 
@@ -102,7 +102,7 @@
       @apply sm:col-span-2;
       @apply overflow-hidden;
 
-      @apply border-b border-neutral-200;
+      @apply border-b border-popups-internal_border;
 
       .address {
         @apply w-full;
@@ -121,7 +121,7 @@
       }
 
       &.supply {
-        @apply border-b sm:border-b-0 sm:border-r border-neutral-200;
+        @apply border-b sm:border-b-0 sm:border-r border-popups-internal_border;
       }
     }
   }
@@ -130,9 +130,8 @@
     @apply rounded-lg;
     @apply px-6 py-4;
 
-    @apply text-center;
-    @apply bg-popupsbg;
-    @apply border border-neutral-50;
+    @apply text-popups-txt text-center;
+    @apply bg-popups-bg;
     @apply shadow;
 
     &.cannot-mint .emoji {
@@ -142,10 +141,10 @@
     }
 
     &.not-mainnet {
-      @apply bg-warning-400;
-      @apply border-warning-500;
+      @apply text-warning-txt;
+      @apply bg-warning-bg;
+      @apply border border-warning-border;
 
-      @apply text-warningtxt;
 
       .small {
         @apply block;
@@ -168,14 +167,14 @@
     @apply rounded-lg;
     @apply overflow-hidden;
 
-    @apply text-center;
-    @apply bg-popupsbg;
+    @apply text-popups-txt text-center;
+    @apply bg-popups-bg;
     @apply shadow;
 
     .preview {
       @apply p-8;
 
-      @apply bg-primary-200;
+      @apply bg-token_preview;
       
       img {
         @apply m-auto;
@@ -193,7 +192,7 @@
       @apply w-full;
 
       &:not(:last-child) {
-        @apply border-b border-neutral-200;
+        @apply border-b border-popups-internal_border;
       }
     }
 
@@ -206,7 +205,7 @@
       }
 
       .decrease, .mint-amount {
-        @apply border-r border-neutral-200;
+        @apply border-r border-popups-internal_border;
       }
 
       .mint-amount {
@@ -214,7 +213,7 @@
         @apply w-full;
 
         @apply font-semibold;
-        @apply text-primary-600;
+        @apply text-label text-lg;
       }
 
       .primary {
