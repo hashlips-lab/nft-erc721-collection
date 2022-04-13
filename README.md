@@ -24,6 +24,12 @@ This project was created for educational purposes, please refer to the [LICENCE]
 |`01b`|Basic setup on **macOS Catalina (Intel-based)**|https://youtu.be/acqXzKN5Xys|
 |`01c`|Basic setup on **Linux**|https://youtu.be/imuqi6Vg3Zw|
 |`02`|Speedrun: create and deploy a smart contract + DAPP (v1.x)|https://youtu.be/VpXJZSqLO8A|
+|`03`|The smart contract project|https://youtu.be/XToWWExBLXE|
+|`04`|The minting DAPP project|https://youtu.be/gs9mVwkn8u4|
+|`05`|Configuration and security|https://youtu.be/pkA86GHU_xw|
+|`06`|Managing the collection without leaving Visual Studio Code|https://youtu.be/yOVKEeRMJSs|
+|`07`|Managing the contract using Truffle Dashboard|https://youtu.be/fwdIA5UuPmM|
+|`08`|Running smart contract functions manually on the block explorer|https://youtu.be/zhvTJhBbtnE|
 
 _More videos coming soon..._
 

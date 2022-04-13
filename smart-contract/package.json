@@ -1,6 +1,7 @@
 {
   "name": "@hashlips-lab/nft-erc721-collection-smart-contract",
-  "version": "2.1.0",
+  "version": "0.0.0",
+  "private": true,
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.4",
     "@nomiclabs/hardhat-etherscan": "^3.0.3",
