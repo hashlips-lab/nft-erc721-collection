@@ -6,6 +6,10 @@ async function main() {
   // Attach to deployed contract
   const contract = await NftContractProvider.getContract();
 
+  if (await contract.whitelistMintEnabled()) {
+    throw '\x1b[31merror\x1b[0m ' + 'Please close the whitelist sale before opening a pre-sale.';
+  }
+
   // Update sale price (if needed)
   const preSalePrice = utils.parseEther(CollectionConfig.preSale.price.toString());
   if (!await (await contract.cost()).eq(preSalePrice)) {
@@ -26,14 +30,6 @@ async function main() {
     console.log('Unpausing the contract...');
 
     await (await contract.setPaused(false)).wait();
-  }
-  
-  // Disable whitelist sale (if needed)
-  if (await contract.whitelistMintEnabled()) {
-    console.log('Disabling whitelist sale...');
-
-    await (await contract.setWhitelistMintEnabled(false)).wait();
-    console.log('Whitelist sale has been disabled!');
   }
 
   console.log('Pre-sale is now open!');
