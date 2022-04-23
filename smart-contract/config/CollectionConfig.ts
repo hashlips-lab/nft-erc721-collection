@@ -4,6 +4,9 @@ import * as Marketplaces from '../lib/Marketplaces';
 import whitelistAddresses from './whitelist.json';
 
 const CollectionConfig: CollectionConfigInterface = {
+  // If you want to use Polygon
+  // testnet: Networks.polygonTestnet,
+  // mainnet: Networks.polygonMainnet,
   testnet: Networks.ethereumTestnet,
   mainnet: Networks.ethereumMainnet,
   // The contract name can be updated using the following command:
