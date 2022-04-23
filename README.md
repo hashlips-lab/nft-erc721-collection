@@ -30,6 +30,8 @@ This project was created for educational purposes, please refer to the [LICENCE]
 |`06`|Managing the collection without leaving Visual Studio Code|https://youtu.be/yOVKEeRMJSs|
 |`07`|Managing the contract using Truffle Dashboard|https://youtu.be/fwdIA5UuPmM|
 |`08`|Running smart contract functions manually on the block explorer|https://youtu.be/zhvTJhBbtnE|
+|`09`|Customizing the look and feel of the DAPP|https://youtu.be/GoDp6yZAY9A|
+|`10`|Deploying the DAPP|https://youtu.be/uUrbIXUgVz4|
 
 _More videos coming soon..._
 
