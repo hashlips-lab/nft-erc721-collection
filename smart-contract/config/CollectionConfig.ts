@@ -9,25 +9,25 @@ const CollectionConfig: CollectionConfigInterface = {
   // The contract name can be updated using the following command:
   // yarn rename-contract NEW_CONTRACT_NAME
   // Please DO NOT change it manually!
-  contractName: 'YourNftToken',
-  tokenName: 'My NFT Token',
-  tokenSymbol: 'MNT',
+  contractName: 'Glitch',
+  tokenName: 'Glitch',
+  tokenSymbol: 'GCT',
   hiddenMetadataUri: 'ipfs://__CID__/hidden.json',
-  maxSupply: 10000,
+  maxSupply: 20,
   whitelistSale: {
     price: 0.05,
-    maxMintAmountPerTx: 1,
+    maxMintAmountPerTx: 20,
   },
   preSale: {
     price: 0.07,
-    maxMintAmountPerTx: 2,
+    maxMintAmountPerTx: 20,
   },
   publicSale: {
     price: 0.09,
-    maxMintAmountPerTx: 5,
+    maxMintAmountPerTx: 20,
   },
-  contractAddress: null,
-  marketplaceIdentifier: 'my-nft-token',
+  contractAddress: "0xD55484E3BfC80BCa94e6C63d274d1fdb1EF84c7a",
+  marketplaceIdentifier: 'Glitch',
   marketplaceConfig: Marketplaces.openSea,
   whitelistAddresses,
 };
