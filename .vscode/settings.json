@@ -1,5 +1,7 @@
 {
   "solidity.packageDefaultDependenciesDirectory": "smart-contract/node_modules",
   "editor.tabSize": 2,
-  "deno.enable": true
+  "deno.enable": true,
+  "deno.lint": true,
+  "deno.unstable": true
 }
