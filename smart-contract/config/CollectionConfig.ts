@@ -12,7 +12,7 @@ const CollectionConfig: CollectionConfigInterface = {
   contractName: 'dewed.eth',
   tokenName: 'dewed.eth',
   tokenSymbol: 'ETH',
-  hiddenMetadataUri: 'https://ipfs.io/ipfs/bafybeif4lsqvy4g3a6osxrb7p3e557c6jg5xdugej63iqzc5keuhbacdui/metadata',
+  hiddenMetadataUri: 'https://ipfs.io/ipfs/bafybeif4lsqvy4g3a6osxrb7p3e557c6jg5xdugej63iqzc5keuhbacdui/metadata/',
   maxSupply: 10000,
   whitelistSale: {
     price: 0.05,
