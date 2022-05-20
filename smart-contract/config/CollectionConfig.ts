@@ -9,8 +9,8 @@ const CollectionConfig: CollectionConfigInterface = {
   // The contract name can be updated using the following command:
   // yarn rename-contract NEW_CONTRACT_NAME
   // Please DO NOT change it manually!
-  contractName: 'dewed.eth',
-  tokenName: 'dewed.eth',
+  contractName: 'dewed',
+  tokenName: 'dewed',
   tokenSymbol: 'ETH',
   hiddenMetadataUri: 'https://ipfs.io/ipfs/bafybeif4lsqvy4g3a6osxrb7p3e557c6jg5xdugej63iqzc5keuhbacdui/metadata/',
   maxSupply: 10000,
