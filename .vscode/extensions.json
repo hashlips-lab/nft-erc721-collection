@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "ms-vscode.vscode-typescript-next",
-    "TabNine.tabnine-vscode"
+    "tabnine.tabnine-vscode",
+    "mgmcdermott.vscode-language-babel"
   ]
 }
