@@ -7,7 +7,7 @@ import '@openzeppelin/contracts/access/Ownable.sol';
 import '@openzeppelin/contracts/utils/cryptography/MerkleProof.sol';
 import '@openzeppelin/contracts/security/ReentrancyGuard.sol';
 
-contract YourNftToken is ERC721A, Ownable, ReentrancyGuard {
+contract dewed is ERC721A, Ownable, ReentrancyGuard {
 
   using Strings for uint256;
 
@@ -19,7 +19,6 @@ contract YourNftToken is ERC721A, Ownable, ReentrancyGuard {
   string public hiddenMetadataUri;
   
   uint256 public cost;
-  uint256 public maxSupply;
   uint256 public maxMintAmountPerTx;
 
   bool public paused = true;
@@ -33,7 +32,7 @@ contract YourNftToken is ERC721A, Ownable, ReentrancyGuard {
     uint256 _maxSupply,
     uint256 _maxMintAmountPerTx,
     string memory _hiddenMetadataUri
-  ) ERC721A(_tokenName, _tokenSymbol) {
+  ) 
     setCost(_cost);
     maxSupply = _maxSupply;
     setMaxMintAmountPerTx(_maxMintAmountPerTx);
