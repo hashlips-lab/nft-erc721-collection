@@ -2,6 +2,7 @@
   "recommendations": [
     "ms-vscode.vscode-typescript-next",
     "tabnine.tabnine-vscode",
-    "mgmcdermott.vscode-language-babel"
+    "mgmcdermott.vscode-language-babel",
+    "denoland.vscode-deno"
   ]
 }
