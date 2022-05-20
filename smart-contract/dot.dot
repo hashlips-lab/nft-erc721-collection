@@ -1,0 +1,116 @@
+digraph G {
+  graph [ ratio = "auto", page = "100", compound =true, bgcolor = "#2e3e56" ];
+  node [ style = "filled", fillcolor = "#edad56", color = "#edad56", penwidth =3 ];
+  edge [ color = "#fcfcfc", penwidth =2, fontname = "helvetica Neue Ultra Light" ];
+subgraph "clusterdewed" {
+  graph [ label = "dewed", color = "#445773", fontcolor = "#f0f0f0", style = "rounded", bgcolor = "#445773" ];
+  "dewed.<Constructor>" [ label = "<Constructor>", color = "#FF9797", fillcolor = "#FF9797" ];
+  "dewed.mintCompliance" [ label = "mintCompliance", color = "#1bc6a6", shape =doubleoctagon ];
+  "dewed.mintPriceCompliance" [ label = "mintPriceCompliance", color = "#1bc6a6", shape =doubleoctagon ];
+  "dewed.whitelistMint" [ label = "whitelistMint", color = "brown", fillcolor = "#FF9797" ];
+  "dewed.mint" [ label = "mint", color = "brown", fillcolor = "#FF9797" ];
+  "dewed.mintForAddress" [ label = "mintForAddress", color = "#FF9797", fillcolor = "#FF9797" ];
+  "dewed.walletOfOwner" [ label = "walletOfOwner", color = "#FF9797", fillcolor = "#FF9797" ];
+  "dewed._startTokenId" [ label = "_startTokenId" ];
+  "dewed.tokenURI" [ label = "tokenURI", color = "#FF9797", fillcolor = "#FF9797" ];
+  "dewed.setRevealed" [ label = "setRevealed", color = "#FF9797", fillcolor = "#FF9797" ];
+  "dewed.setCost" [ label = "setCost" ];
+  "dewed.setMaxMintAmountPerTx" [ label = "setMaxMintAmountPerTx" ];
+  "dewed.setHiddenMetadataUri" [ label = "setHiddenMetadataUri" ];
+  "dewed.setUriPrefix" [ label = "setUriPrefix", color = "#FF9797", fillcolor = "#FF9797" ];
+  "dewed.setUriSuffix" [ label = "setUriSuffix", color = "#FF9797", fillcolor = "#FF9797" ];
+  "dewed.setPaused" [ label = "setPaused", color = "#FF9797", fillcolor = "#FF9797" ];
+  "dewed.setMerkleRoot" [ label = "setMerkleRoot", color = "#FF9797", fillcolor = "#FF9797" ];
+  "dewed.setWhitelistMintEnabled" [ label = "setWhitelistMintEnabled", color = "#FF9797", fillcolor = "#FF9797" ];
+  "dewed.withdraw" [ label = "withdraw", color = "#FF9797", fillcolor = "#FF9797" ];
+  "dewed._baseURI" [ label = "_baseURI" ];
+  "dewed.totalSupply" [ label = "totalSupply" ];
+  "dewed._msgSender" [ label = "_msgSender" ];
+  "dewed._safeMint" [ label = "_safeMint" ];
+  "dewed.balanceOf" [ label = "balanceOf" ];
+  "dewed._exists" [ label = "_exists" ];
+  "dewed.payable" [ label = "payable" ];
+  "dewed.owner" [ label = "owner" ];
+}
+
+subgraph "clusterMerkleProof" {
+  graph [ label = "MerkleProof", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "MerkleProof.verify" [ label = "verify" ];
+}
+
+subgraph "cluster_tokenId" {
+  graph [ label = "_tokenId", color = "#e8726d", fontcolor = "#f0f0f0", style = "rounded,dashed", bgcolor = "#3b4b63" ];
+  "_tokenId.toString" [ label = "toString" ];
+}
+
+  "dewed.<Constructor>";
+  "dewed.setCost";
+  "dewed.setMaxMintAmountPerTx";
+  "dewed.setHiddenMetadataUri";
+  "dewed.mintCompliance";
+  "dewed.totalSupply";
+  "dewed.whitelistMint";
+  "dewed._msgSender";
+  "MerkleProof.verify";
+  "dewed._safeMint";
+  "dewed.mint";
+  "dewed.mintForAddress";
+  "dewed.walletOfOwner";
+  "dewed.balanceOf";
+  "dewed._startTokenId";
+  "dewed.tokenURI";
+  "dewed._exists";
+  "dewed._baseURI";
+  "_tokenId.toString";
+  "dewed.withdraw";
+  "dewed.payable";
+  "dewed.owner";
+  "dewed.<Constructor>" -> "dewed.setCost" [ color = "#1bc6a6" ];
+  "dewed.<Constructor>" -> "dewed.setMaxMintAmountPerTx" [ color = "#1bc6a6" ];
+  "dewed.<Constructor>" -> "dewed.setHiddenMetadataUri" [ color = "#1bc6a6" ];
+  "dewed.mintCompliance" -> "dewed.totalSupply" [ color = "#1bc6a6" ];
+  "dewed.whitelistMint" -> "dewed._msgSender" [ color = "#1bc6a6" ];
+  "dewed.whitelistMint" -> "dewed._msgSender" [ color = "#1bc6a6" ];
+  "dewed.whitelistMint" -> "MerkleProof.verify" [ color = "white" ];
+  "dewed.whitelistMint" -> "dewed._msgSender" [ color = "#1bc6a6" ];
+  "dewed.whitelistMint" -> "dewed._safeMint" [ color = "#1bc6a6" ];
+  "dewed.whitelistMint" -> "dewed._msgSender" [ color = "#1bc6a6" ];
+  "dewed.mint" -> "dewed._safeMint" [ color = "#1bc6a6" ];
+  "dewed.mint" -> "dewed._msgSender" [ color = "#1bc6a6" ];
+  "dewed.mintForAddress" -> "dewed._safeMint" [ color = "#1bc6a6" ];
+  "dewed.walletOfOwner" -> "dewed.balanceOf" [ color = "#1bc6a6" ];
+  "dewed.walletOfOwner" -> "dewed._startTokenId" [ color = "#1bc6a6" ];
+  "dewed.tokenURI" -> "dewed._exists" [ color = "#1bc6a6" ];
+  "dewed.tokenURI" -> "dewed._baseURI" [ color = "#1bc6a6" ];
+  "dewed.tokenURI" -> "_tokenId.toString" [ color = "white" ];
+  "dewed.withdraw" -> "dewed.payable" [ color = "#1bc6a6" ];
+  "dewed.withdraw" -> "dewed.payable" [ color = "#1bc6a6" ];
+  "dewed.withdraw" -> "dewed.owner" [ color = "#1bc6a6" ];
+
+
+rankdir=LR
+node [shape=plaintext]
+subgraph cluster_01 { 
+label = "Legend";
+key [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+  <tr><td align="right" port="i1">Internal Call</td></tr>
+  <tr><td align="right" port="i2">External Call</td></tr>
+  <tr><td align="right" port="i3">Defined Contract</td></tr>
+  <tr><td align="right" port="i4">Undefined Contract</td></tr>
+  </table>>]
+key2 [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+  <tr><td port="i1">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i2">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i3" bgcolor="#445773">&nbsp;&nbsp;&nbsp;</td></tr>
+  <tr><td port="i4">
+    <table border="1" cellborder="0" cellspacing="0" cellpadding="7" color="#e8726d">
+      <tr>
+       <td></td>
+      </tr>
+     </table>
+  </td></tr>
+  </table>>]
+key:i1:e -> key2:i1:w [color="#1bc6a6"]
+key:i2:e -> key2:i2:w [color="white"]
+}
+}

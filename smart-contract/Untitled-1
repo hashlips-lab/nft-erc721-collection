@@ -1,0 +1,65 @@
+######################
+## draw.io compatible CSV.
+##    to import, visit draw.io and goto: Arrange -> Insert -> Advanced -> CSV ... 
+##
+##
+## GENERATOR: https://marketplace.visualstudio.com/items?itemName=tintinweb.solidity-visual-auditor
+######################
+# label: %label%
+# parentstyle: swimlane;html=1;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=%fill%;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;align=center;rounded=1;shadow=0;comic=0;labelBackgroundColor=none;strokeColor=#000000;strokeWidth=1;fontFamily=Verdana;fontSize=12;fontColor=#000000;arcSize=20;
+# style: shape=%type%;html=1;fillColor=%fill%;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Courier New;fontSize=10;align=left;%override%
+# namespace: sva-1653042783463
+# width: auto
+# height: auto
+# ignore: id,shape,fill,stroke,refs
+# identity: id
+# parent: rparent
+## padding: 40
+## nodespacing: 40
+## levelspacing: 40
+## edgespacing: 40
+## layout: horizontalflow
+# connect: {"from": "refs", "to": "id", "style": "curved=1;fontSize=11;noEdgeStyle=1;strokeColor=#6666FF;dashed=1;dashPattern=1 4;"}
+# connect: {"from": "calls", "to": "id", "style": "curved=1;fontSize=11;noEdgeStyle=1;strokeColor=#6666FF;dashed=0;dashPattern=1 4;"}
+## CSV data starts below this line
+## id,rparent,label, type, fill, override, refs
+id,rparent,label,type,fill,override,refs
+0,-,dewed,,#e0e0e0,,
+0_i0,0,ERC721A,mxgraph.bootstrap.rrect;strokeColor=none,#fff2cc;strokeColor=#d6b656;dashed=1,fontSize=6,
+0_i1,0,Ownable,mxgraph.bootstrap.rrect;strokeColor=none,#fff2cc;strokeColor=#d6b656;dashed=1,fontSize=6,
+0_i2,0,ReentrancyGuard,mxgraph.bootstrap.rrect;strokeColor=none,#fff2cc;strokeColor=#d6b656;dashed=1,fontSize=6,
+0_u0,0,Strings,mxgraph.bootstrap.rrect,#E3F7E2;strokeColor=#82b366;dashed=1,fontSize=6,
+0_f0,0,<b>__constr__<b>,text;strokeColor=none,none,,
+0_mod0_0,-,ERC721A,mxgraph.bootstrap.rrect,#fff2cc,strokeColor=#d79b00;dashed=1;align=center;rSize=10;fontStyle=0;whiteSpace=wrap;dashPattern=1 1;strokeColor=#d6b656;fontSize=8;fontFamily=Helvetica,"0_f0"
+0_f1,0,💰 whitelistMint,text;strokeColor=none,none,,
+0_mod1_0,-,mintCompliance,mxgraph.bootstrap.rrect,#fff2cc,strokeColor=#d79b00;dashed=1;align=center;rSize=10;fontStyle=0;whiteSpace=wrap;dashPattern=1 1;strokeColor=#d6b656;fontSize=8;fontFamily=Helvetica,"0_f1"
+0_mod1_1,-,mintPriceCompliance,mxgraph.bootstrap.rrect,#fff2cc,strokeColor=#d79b00;dashed=1;align=center;rSize=10;fontStyle=0;whiteSpace=wrap;dashPattern=1 1;strokeColor=#d6b656;fontSize=8;fontFamily=Helvetica,"0_f1"
+0_f2,0,💰 mint,text;strokeColor=none,none,,
+0_mod2_0,-,mintCompliance,mxgraph.bootstrap.rrect,#fff2cc,strokeColor=#d79b00;dashed=1;align=center;rSize=10;fontStyle=0;whiteSpace=wrap;dashPattern=1 1;strokeColor=#d6b656;fontSize=8;fontFamily=Helvetica,"0_f2"
+0_mod2_1,-,mintPriceCompliance,mxgraph.bootstrap.rrect,#fff2cc,strokeColor=#d79b00;dashed=1;align=center;rSize=10;fontStyle=0;whiteSpace=wrap;dashPattern=1 1;strokeColor=#d6b656;fontSize=8;fontFamily=Helvetica,"0_f2"
+0_f3,0,mintForAddress,text;strokeColor=none,none,,
+0_mod3_0,-,mintCompliance,mxgraph.bootstrap.rrect,#fff2cc,strokeColor=#d79b00;dashed=1;align=center;rSize=10;fontStyle=0;whiteSpace=wrap;dashPattern=1 1;strokeColor=#d6b656;fontSize=8;fontFamily=Helvetica,"0_f3"
+0_mod3_1,-,onlyOwner,mxgraph.bootstrap.rrect,#fff2cc,strokeColor=#d79b00;dashed=1;align=center;rSize=10;fontStyle=0;whiteSpace=wrap;dashPattern=1 1;strokeColor=#d6b656;fontSize=8;fontFamily=Helvetica,"0_f3"
+0_f4,0,🔍 walletOfOwner,text;strokeColor=none,none,,
+0_f5,0,🔍 tokenURI,text;strokeColor=none,none,,
+0_f6,0,setRevealed,text;strokeColor=none,none,,
+0_mod6_0,-,onlyOwner,mxgraph.bootstrap.rrect,#fff2cc,strokeColor=#d79b00;dashed=1;align=center;rSize=10;fontStyle=0;whiteSpace=wrap;dashPattern=1 1;strokeColor=#d6b656;fontSize=8;fontFamily=Helvetica,"0_f6"
+0_f7,0,setCost,text;strokeColor=none,none,,
+0_mod7_0,-,onlyOwner,mxgraph.bootstrap.rrect,#fff2cc,strokeColor=#d79b00;dashed=1;align=center;rSize=10;fontStyle=0;whiteSpace=wrap;dashPattern=1 1;strokeColor=#d6b656;fontSize=8;fontFamily=Helvetica,"0_f7"
+0_f8,0,setMaxMintAmountPerTx,text;strokeColor=none,none,,
+0_mod8_0,-,onlyOwner,mxgraph.bootstrap.rrect,#fff2cc,strokeColor=#d79b00;dashed=1;align=center;rSize=10;fontStyle=0;whiteSpace=wrap;dashPattern=1 1;strokeColor=#d6b656;fontSize=8;fontFamily=Helvetica,"0_f8"
+0_f9,0,setHiddenMetadataUri,text;strokeColor=none,none,,
+0_mod9_0,-,onlyOwner,mxgraph.bootstrap.rrect,#fff2cc,strokeColor=#d79b00;dashed=1;align=center;rSize=10;fontStyle=0;whiteSpace=wrap;dashPattern=1 1;strokeColor=#d6b656;fontSize=8;fontFamily=Helvetica,"0_f9"
+0_f10,0,setUriPrefix,text;strokeColor=none,none,,
+0_mod10_0,-,onlyOwner,mxgraph.bootstrap.rrect,#fff2cc,strokeColor=#d79b00;dashed=1;align=center;rSize=10;fontStyle=0;whiteSpace=wrap;dashPattern=1 1;strokeColor=#d6b656;fontSize=8;fontFamily=Helvetica,"0_f10"
+0_f11,0,setUriSuffix,text;strokeColor=none,none,,
+0_mod11_0,-,onlyOwner,mxgraph.bootstrap.rrect,#fff2cc,strokeColor=#d79b00;dashed=1;align=center;rSize=10;fontStyle=0;whiteSpace=wrap;dashPattern=1 1;strokeColor=#d6b656;fontSize=8;fontFamily=Helvetica,"0_f11"
+0_f12,0,setPaused,text;strokeColor=none,none,,
+0_mod12_0,-,onlyOwner,mxgraph.bootstrap.rrect,#fff2cc,strokeColor=#d79b00;dashed=1;align=center;rSize=10;fontStyle=0;whiteSpace=wrap;dashPattern=1 1;strokeColor=#d6b656;fontSize=8;fontFamily=Helvetica,"0_f12"
+0_f13,0,setMerkleRoot,text;strokeColor=none,none,,
+0_mod13_0,-,onlyOwner,mxgraph.bootstrap.rrect,#fff2cc,strokeColor=#d79b00;dashed=1;align=center;rSize=10;fontStyle=0;whiteSpace=wrap;dashPattern=1 1;strokeColor=#d6b656;fontSize=8;fontFamily=Helvetica,"0_f13"
+0_f14,0,setWhitelistMintEnabled,text;strokeColor=none,none,,
+0_mod14_0,-,onlyOwner,mxgraph.bootstrap.rrect,#fff2cc,strokeColor=#d79b00;dashed=1;align=center;rSize=10;fontStyle=0;whiteSpace=wrap;dashPattern=1 1;strokeColor=#d6b656;fontSize=8;fontFamily=Helvetica,"0_f14"
+0_f15,0,withdraw,text;strokeColor=none,none,,
+0_mod15_0,-,onlyOwner,mxgraph.bootstrap.rrect,#fff2cc,strokeColor=#d79b00;dashed=1;align=center;rSize=10;fontStyle=0;whiteSpace=wrap;dashPattern=1 1;strokeColor=#d6b656;fontSize=8;fontFamily=Helvetica,"0_f15"
+0_mod15_1,-,nonReentrant,mxgraph.bootstrap.rrect,#fff2cc,strokeColor=#d79b00;dashed=1;align=center;rSize=10;fontStyle=0;whiteSpace=wrap;dashPattern=1 1;strokeColor=#d6b656;fontSize=8;fontFamily=Helvetica,"0_f15"

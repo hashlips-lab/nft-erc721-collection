@@ -34,7 +34,7 @@ contract dewed is ERC721A, Ownable, ReentrancyGuard {
     string memory _hiddenMetadataUri
   ) 
     setCost(_cost);
-    maxSupply = 10_000;
+    maxSupply = _maxSupply;
     setMaxMintAmountPerTx(_maxMintAmountPerTx);
     setHiddenMetadataUri(_hiddenMetadataUri);
   }
