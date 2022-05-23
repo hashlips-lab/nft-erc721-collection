@@ -8,6 +8,8 @@ import NetworkConfigInterface from '../../../../smart-contract/lib/NetworkConfig
 import CollectionStatus from './CollectionStatus';
 import MintWidget from './MintWidget';
 import Whitelist from '../lib/Whitelist';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import '@rainbow-me/rainbowkit/styles.css';
 
 const ContractAbi = require('../../../../smart-contract/artifacts/contracts/' + CollectionConfig.contractName + '.sol/' + CollectionConfig.contractName + '.json').abi;
 
@@ -61,18 +63,6 @@ export default class Dapp extends React.Component<Props, State> {
 
   componentDidMount = async () => {
     const browserProvider = await detectEthereumProvider() as ExternalProvider;
-
-    if (browserProvider?.isMetaMask !== true) {
-      this.setError( 
-        <>
-          We were not able to detect <strong>MetaMask</strong>. We value <strong>privacy and security</strong> a lot so we limit the wallet options on the DAPP.<br />
-          <br />
-          But don't worry! <span className="emoji">😃</span> You can always interact with the smart-contract through <a href={this.generateContractUrl()} target="_blank">{this.state.networkConfig.blockExplorer.name}</a> and <strong>we do our best to provide you with the best user experience possible</strong>, even from there.<br />
-          <br />
-          You can also get your <strong>Whitelist Proof</strong> manually, using the tool below.
-        </>,
-      );
-    }
 
     this.provider = new ethers.providers.Web3Provider(browserProvider);
 
@@ -202,7 +192,7 @@ export default class Dapp extends React.Component<Props, State> {
 
         {!this.isWalletConnected() || !this.isSoldOut() ?
           <div className="no-wallet">
-            {!this.isWalletConnected() ? <button className="primary" disabled={this.provider === undefined} onClick={() => this.connectWallet()}>Connect Wallet</button> : null}
+            {!this.isWalletConnected() ? <ConnectButton/> : null}
             
             <div className="use-block-explorer">
               Hey, looking for a <strong>super-safe experience</strong>? <span className="emoji">😃</span><br />
@@ -266,17 +256,6 @@ export default class Dapp extends React.Component<Props, State> {
     return CollectionConfig.marketplaceConfig.generateCollectionUrl(CollectionConfig.marketplaceIdentifier, !this.isNotMainnet());
   }
 
-  private async connectWallet(): Promise<void>
-  {
-    try {
-      await this.provider.provider.request!({ method: 'eth_requestAccounts' });
-
-      this.initWallet();
-    } catch (e) {
-      this.setError(e);
-    }
-  }
-
   private async initWallet(): Promise<void>
   {
     const walletAccounts = await this.provider.listAccounts();
@@ -316,7 +295,7 @@ export default class Dapp extends React.Component<Props, State> {
       CollectionConfig.contractAddress!,
       ContractAbi,
       this.provider.getSigner(),
-    ) as NftContractType;
+    ) as unknown as NftContractType;
 
     this.setState({
       maxSupply: (await this.contract.maxSupply()).toNumber(),
