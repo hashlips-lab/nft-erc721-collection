@@ -6,8 +6,9 @@ import 'erc721a/contracts/ERC721A.sol';
 import '@openzeppelin/contracts/access/Ownable.sol';
 import '@openzeppelin/contracts/utils/cryptography/MerkleProof.sol';
 import '@openzeppelin/contracts/security/ReentrancyGuard.sol';
+import '@openzeppelin/contracts/token/common/ERC2981.sol';
 
-contract YourNftToken is ERC721A, Ownable, ReentrancyGuard {
+contract YourNftToken is ERC721A, ERC2981, Ownable, ReentrancyGuard {
 
   using Strings for uint256;
 
@@ -38,6 +39,26 @@ contract YourNftToken is ERC721A, Ownable, ReentrancyGuard {
     maxSupply = _maxSupply;
     setMaxMintAmountPerTx(_maxMintAmountPerTx);
     setHiddenMetadataUri(_hiddenMetadataUri);
+    // ERC2981: set default royalty
+    setDefaultRoyalty(address(this), 500);
+  }
+  
+  /// @dev Sets token royalties
+  /// @param receiver of the royalties
+  /// @param value percentage ((using 2 decimals - 10000 = 100%, 500 = 5%, 0 = 0)
+  function setRoyalties(address receiver, uint96 value) public onlyOwner {
+      require(receiver != address(0), "ERC2981: invalid receiver");
+      require(value <= _feeDenominator(), "ERC2981: royalty fee will exceed salePrice");
+      
+      _setDefaultRoyalty(receiver, value);
+  }
+
+  /**
+  * @dev This function shows the interfaces supported by the contract
+  */
+  function supportsInterface(bytes4 interfaceId) public view override(ERC2981, ERC721A) returns (bool) {
+      return  ERC2981.supportsInterface(interfaceId) || 
+              ERC721A.supportsInterface(interfaceId);
   }
 
   modifier mintCompliance(uint256 _mintAmount) {
