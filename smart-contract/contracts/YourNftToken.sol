@@ -40,7 +40,7 @@ contract YourNftToken is ERC721A, ERC2981, Ownable, ReentrancyGuard {
     setMaxMintAmountPerTx(_maxMintAmountPerTx);
     setHiddenMetadataUri(_hiddenMetadataUri);
     // ERC2981: set default royalty
-    setDefaultRoyalty(address(this), 500);
+    _setDefaultRoyalty(address(this), 500);
   }
   
   /// @dev Sets token royalties
