@@ -21,6 +21,7 @@ contract YourNftToken is ERC721A, Ownable, ReentrancyGuard {
   uint256 public cost;
   uint256 public maxSupply;
   uint256 public maxMintAmountPerTx;
+  uint256 public finalMaxSupply = 0;
 
   bool public paused = true;
   bool public whitelistMintEnabled = false;
@@ -151,6 +152,16 @@ contract YourNftToken is ERC721A, Ownable, ReentrancyGuard {
 
   function setWhitelistMintEnabled(bool _state) public onlyOwner {
     whitelistMintEnabled = _state;
+  }
+  
+  /// @dev Enables minting in stages if hasn't been done already
+  /// @param _supply new minting phase max
+  function setCurrentMintMaxSupply(uint256 _supply) public onlyOwner {
+    if (finalMaxSupply == 0) {
+        finalMaxSupply = maxSupply;
+    }
+    require(_supply <= finalMaxSupply && _supply >= totalSupply(), 'New supply must be >= currently minted and <= finalMaxSupply');
+    maxSupply = _supply;
   }
 
   function withdraw() public onlyOwner nonReentrant {
