@@ -202,19 +202,19 @@ describe(CollectionConfig.contractName, function () {
   });
     
   it('Wallet of owner', async function () {
-    expect(await contract.walletOfOwner(await owner.getAddress())).deep.equal([
+    expect(await contract.tokensOfOwner(await owner.getAddress())).deep.equal([
       BigNumber.from(1),
     ]);
-    expect(await contract.walletOfOwner(await whitelistedUser.getAddress())).deep.equal([
+    expect(await contract.tokensOfOwner(await whitelistedUser.getAddress())).deep.equal([
       BigNumber.from(2),
       BigNumber.from(3),
       BigNumber.from(6),
     ]);
-    expect(await contract.walletOfOwner(await holder.getAddress())).deep.equal([
+    expect(await contract.tokensOfOwner(await holder.getAddress())).deep.equal([
       BigNumber.from(4),
       BigNumber.from(5),
     ]);
-    expect(await contract.walletOfOwner(await externalUser.getAddress())).deep.equal([]);
+    expect(await contract.tokensOfOwner(await externalUser.getAddress())).deep.equal([]);
   });
     
   it('Supply checks (long)', async function () {
@@ -248,7 +248,7 @@ describe(CollectionConfig.contractName, function () {
     for (const i of [...Array(lastMintAmount).keys()].reverse()) {
       expectedWalletOfOwner.push(BigNumber.from(CollectionConfig.maxSupply - i));
     }
-    expect(await contract.walletOfOwner(
+    expect(await contract.tokensOfOwner(
       await owner.getAddress(),
       {
         // Set gas limit to the maximum value since this function should be used off-chain only and it would fail otherwise...

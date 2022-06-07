@@ -3,7 +3,6 @@ import { MerkleTree } from 'merkletreejs';
 import keccak256 from 'keccak256';
 import CollectionConfig from './../config/CollectionConfig';
 import NftContractProvider from '../lib/NftContractProvider';
-import { ethers } from 'hardhat';
 
 async function main() {
   // Check configuration
