@@ -22,6 +22,7 @@
         "postcss-loader": "^6.2.1",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
+        "react-toastify": "^9.0.3",
         "regenerator-runtime": "^0.13.2",
         "sass": "^1.45.0",
         "sass-loader": "^12.4.0",

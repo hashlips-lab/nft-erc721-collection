@@ -8,6 +8,7 @@ import NetworkConfigInterface from '../../../../smart-contract/lib/NetworkConfig
 import CollectionStatus from './CollectionStatus';
 import MintWidget from './MintWidget';
 import Whitelist from '../lib/Whitelist';
+import { toast } from 'react-toastify';
 
 const ContractAbi = require('../../../../smart-contract/artifacts/contracts/' + CollectionConfig.contractName + '.sol/' + CollectionConfig.contractName + '.json').abi;
 
@@ -23,6 +24,7 @@ interface State {
   maxMintAmountPerTx: number;
   tokenPrice: BigNumber;
   isPaused: boolean;
+  loading: boolean;
   isWhitelistMintEnabled: boolean;
   isUserInWhitelist: boolean;
   merkleProofManualAddress: string;
@@ -39,6 +41,7 @@ const defaultState: State = {
   maxMintAmountPerTx: 0,
   tokenPrice: BigNumber.from(0),
   isPaused: true,
+  loading: false,
   isWhitelistMintEnabled: false,
   isUserInWhitelist: false,
   merkleProofManualAddress: '',
@@ -63,7 +66,7 @@ export default class Dapp extends React.Component<Props, State> {
     const browserProvider = await detectEthereumProvider() as ExternalProvider;
 
     if (browserProvider?.isMetaMask !== true) {
-      this.setError( 
+      this.setError(
         <>
           We were not able to detect <strong>MetaMask</strong>. We value <strong>privacy and security</strong> a lot so we limit the wallet options on the DAPP.<br />
           <br />
@@ -84,16 +87,44 @@ export default class Dapp extends React.Component<Props, State> {
   async mintTokens(amount: number): Promise<void>
   {
     try {
-      await this.contract.mint(amount, {value: this.state.tokenPrice.mul(amount)});
+      this.setState({loading: true});
+      const transaction = await this.contract.mint(amount, {value: this.state.tokenPrice.mul(amount)});
+
+      toast.info(<>
+        Transaction sent! Please wait...<br/>
+        <a href={this.generateTransactionUrl(transaction.hash)} target="_blank" rel="noopener">View on {this.state.networkConfig.blockExplorer.name}</a>
+      </>);
+
+      const receipt = await transaction.wait();
+
+      toast.success(<>
+        Success!<br />
+        <a href={this.generateTransactionUrl(receipt.transactionHash)} target="_blank" rel="noopener">View on {this.state.networkConfig.blockExplorer.name}</a>
+      </>);
+
+      this.setState({loading: false});
     } catch (e) {
       this.setError(e);
+      this.setState({loading: false});
     }
   }
 
   async whitelistMintTokens(amount: number): Promise<void>
   {
     try {
-      await this.contract.whitelistMint(amount, Whitelist.getProofForAddress(this.state.userAddress!), {value: this.state.tokenPrice.mul(amount)});
+      const transaction = await this.contract.whitelistMint(amount, Whitelist.getProofForAddress(this.state.userAddress!), {value: this.state.tokenPrice.mul(amount)});
+
+      toast.info(<>
+        Transaction sent! Please wait...<br/>
+        <a href={this.generateTransactionUrl(transaction.hash)} target="_blank" rel="noopener">View on {this.state.networkConfig.blockExplorer.name}</a>
+      </>);
+
+      const receipt = await transaction.wait();
+
+      toast.success(<>
+        Success!<br />
+        <a href={this.generateTransactionUrl(receipt.transactionHash)} target="_blank" rel="noopener">View on {this.state.networkConfig.blockExplorer.name}</a>
+      </>);
     } catch (e) {
       this.setError(e);
     }
@@ -134,7 +165,7 @@ export default class Dapp extends React.Component<Props, State> {
     navigator.clipboard.writeText(merkleProof);
 
     this.setState({
-      merkleProofManualAddressFeedbackMessage: 
+      merkleProofManualAddressFeedbackMessage:
       <>
         <strong>Congratulations!</strong> <span className="emoji">🎉</span><br />
         Your Merkle Proof <strong>has been copied to the clipboard</strong>. You can paste it into <a href={this.generateContractUrl()} target="_blank">{this.state.networkConfig.blockExplorer.name}</a> to claim your tokens.
@@ -153,7 +184,7 @@ export default class Dapp extends React.Component<Props, State> {
           : null}
 
         {this.state.errorMessage ? <div className="error"><p>{this.state.errorMessage}</p><button onClick={() => this.setError()}>Close</button></div> : null}
-        
+
         {this.isWalletConnected() ?
           <>
             {this.isContractReady() ?
@@ -179,6 +210,7 @@ export default class Dapp extends React.Component<Props, State> {
                     isUserInWhitelist={this.state.isUserInWhitelist}
                     mintTokens={(mintAmount) => this.mintTokens(mintAmount)}
                     whitelistMintTokens={(mintAmount) => this.whitelistMintTokens(mintAmount)}
+                    loading={this.state.loading}
                   />
                   :
                   <div className="collection-sold-out">
@@ -202,7 +234,7 @@ export default class Dapp extends React.Component<Props, State> {
         :
           <div className="no-wallet">
             {!this.isWalletConnected() ? <button className="primary" disabled={this.provider === undefined} onClick={() => this.connectWallet()}>Connect Wallet</button> : null}
-            
+
             <div className="use-block-explorer">
               Hey, looking for a <strong>super-safe experience</strong>? <span className="emoji">😃</span><br />
               You can interact with the smart-contract <strong>directly</strong> through <a href={this.generateContractUrl()} target="_blank">{this.state.networkConfig.blockExplorer.name}</a>, without even connecting your wallet to this DAPP! <span className="emoji">🚀</span><br />
@@ -245,7 +277,7 @@ export default class Dapp extends React.Component<Props, State> {
         errorMessage = error.message;
       } else if (React.isValidElement(error)) {
         this.setState({errorMessage: error});
-  
+
         return;
       }
     }
@@ -265,6 +297,11 @@ export default class Dapp extends React.Component<Props, State> {
     return CollectionConfig.marketplaceConfig.generateCollectionUrl(CollectionConfig.marketplaceIdentifier, !this.isNotMainnet());
   }
 
+  private generateTransactionUrl(transactionHash: string): string
+  {
+    return this.state.networkConfig.blockExplorer.generateTransactionUrl(transactionHash);
+  }
+
   private async connectWallet(): Promise<void>
   {
     try {
@@ -279,7 +316,7 @@ export default class Dapp extends React.Component<Props, State> {
   private async initWallet(): Promise<void>
   {
     const walletAccounts = await this.provider.listAccounts();
-    
+
     this.setState(defaultState);
 
     if (walletAccounts.length === 0) {
@@ -298,7 +335,7 @@ export default class Dapp extends React.Component<Props, State> {
 
       return;
     }
-    
+
     this.setState({
       userAddress: walletAccounts[0],
       network,

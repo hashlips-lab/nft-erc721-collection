@@ -9,6 +9,7 @@ interface Props {
   tokenPrice: BigNumber;
   maxMintAmountPerTx: number;
   isPaused: boolean;
+  loading: boolean;
   isWhitelistMintEnabled: boolean;
   isUserInWhitelist: boolean;
   mintTokens(mintAmount: number): Promise<void>;
@@ -64,7 +65,7 @@ export default class MintWidget extends React.Component<Props, State> {
     return (
       <>
         {this.canMint() ?
-          <div className="mint-widget">
+          <div className={`mint-widget ${this.props.loading ? 'animate-pulse saturate-0 pointer-events-none' : ''}`}>
             <div className="preview">
               <img src="/build/images/preview.png" alt="Collection preview" />
             </div>
@@ -74,16 +75,16 @@ export default class MintWidget extends React.Component<Props, State> {
             </div>
 
             <div className="controls">
-              <button className="decrease" onClick={() => this.decrementMintAmount()}>-</button>
+              <button className="decrease" disabled={this.props.loading} onClick={() => this.decrementMintAmount()}>-</button>
               <span className="mint-amount">{this.state.mintAmount}</span>
-              <button className="increase" onClick={() => this.incrementMintAmount()}>+</button>
-              <button className="primary" onClick={() => this.mint()}>Mint</button>
+              <button className="increase" disabled={this.props.loading} onClick={() => this.incrementMintAmount()}>+</button>
+              <button className="primary" disabled={this.props.loading} onClick={() => this.mint()}>Mint</button>
             </div>
           </div>
           :
           <div className="cannot-mint">
             <span className="emoji">⏳</span>
-            
+
             {this.props.isWhitelistMintEnabled ? <>You are not included in the <strong>whitelist</strong>.</> : <>The contract is <strong>paused</strong>.</>}<br />
             Please come back during the next sale!
           </div>
