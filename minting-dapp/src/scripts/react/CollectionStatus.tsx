@@ -7,6 +7,7 @@ interface Props {
   isPaused: boolean;
   isWhitelistMintEnabled: boolean;
   isUserInWhitelist: boolean;
+  isSoldOut: boolean;
 }
 
 interface State {
@@ -24,7 +25,7 @@ export default class CollectionStatus extends React.Component<Props, State> {
 
   private isSaleOpen(): boolean
   {
-    return this.props.isWhitelistMintEnabled || !this.props.isPaused;
+    return (this.props.isWhitelistMintEnabled || !this.props.isPaused) && !this.props.isSoldOut;
   }
 
   render() {
