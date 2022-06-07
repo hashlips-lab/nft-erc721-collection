@@ -27,7 +27,6 @@ interface State {
   isUserInWhitelist: boolean;
   merkleProofManualAddress: string;
   merkleProofManualAddressFeedbackMessage: string|JSX.Element|null;
-  mintedTransaction: string|null;
   errorMessage: string|JSX.Element|null;
 }
 
@@ -44,7 +43,6 @@ const defaultState: State = {
   isUserInWhitelist: false,
   merkleProofManualAddress: '',
   merkleProofManualAddressFeedbackMessage: null,
-  mintedTransaction: null,
   errorMessage: null,
 };
 
@@ -86,9 +84,7 @@ export default class Dapp extends React.Component<Props, State> {
   async mintTokens(amount: number): Promise<void>
   {
     try {
-      this.setState({ mintedTransaction: null });
-      let transaction = await this.contract.mint(amount, {value: this.state.tokenPrice.mul(amount)});
-      this.setState({ mintedTransaction: transaction.hash });
+      await this.contract.mint(amount, {value: this.state.tokenPrice.mul(amount)});
     } catch (e) {
       this.setError(e);
     }
@@ -111,11 +107,6 @@ export default class Dapp extends React.Component<Props, State> {
   private isContractReady(): boolean
   {
     return this.contract !== undefined;
-  }
-
-  private isMinting(): boolean
-  {
-    return this.state.mintedTransaction !== null && this.state.errorMessage === null;
   }
 
   private isSoldOut(): boolean
@@ -162,24 +153,8 @@ export default class Dapp extends React.Component<Props, State> {
           : null}
 
         {this.state.errorMessage ? <div className="error"><p>{this.state.errorMessage}</p><button onClick={() => this.setError()}>Close</button></div> : null}
-
-        {this.isMinting() ?
-          <div className="mint-initiated">
-            <p>
-              View the <a href={this.generateTransactionUrl()} target="_blank">transaction status</a> directly on the blockchain.
-              Once complete, view the minted NFT in many ways:
-            </p>
-            <p>
-              <ul>
-                <li><a href={this.generateTokenUrl()} target="_blank">Etherscan</a></li>
-                <li><a href={this.generateMarketplaceUrl()} target="_blank">OpenSea</a></li>
-                <li><a href="https://metamask.app.link/skAH3BaF99" target="_blank">MetaMask</a></li>
-                <li><a href="https://rainbow.me" target="_blank">Rainbow</a></li>
-              </ul>
-            </p>
-            <button onClick={() => window.location.reload()} className="primary">Mint Another</button>
-          </div>
-          : this.isWalletConnected() ?
+        
+        {this.isWalletConnected() ?
           <>
             {this.isContractReady() ?
               <>
@@ -276,7 +251,6 @@ export default class Dapp extends React.Component<Props, State> {
     }
 
     this.setState({
-      mintedTransaction: null,
       errorMessage: null === errorMessage ? null : errorMessage.charAt(0).toUpperCase() + errorMessage.slice(1),
     });
   }
@@ -284,18 +258,6 @@ export default class Dapp extends React.Component<Props, State> {
   private generateContractUrl(): string
   {
     return this.state.networkConfig.blockExplorer.generateContractUrl(CollectionConfig.contractAddress!);
-  }
-
-  private generateTransactionUrl(): string
-  {
-    return this.state.mintedTransaction
-      ? this.state.networkConfig.blockExplorer.generateTransactionUrl(this.state.mintedTransaction)
-      : '#';
-  }
-
-  private generateTokenUrl(): string
-  {
-    return this.state.networkConfig.blockExplorer.generateTokenUrl(CollectionConfig.contractAddress!);
   }
 
   private generateMarketplaceUrl(): string
