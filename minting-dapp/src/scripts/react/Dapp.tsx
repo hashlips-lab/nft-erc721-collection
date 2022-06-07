@@ -112,6 +112,7 @@ export default class Dapp extends React.Component<Props, State> {
   async whitelistMintTokens(amount: number): Promise<void>
   {
     try {
+      this.setState({loading: true});
       const transaction = await this.contract.whitelistMint(amount, Whitelist.getProofForAddress(this.state.userAddress!), {value: this.state.tokenPrice.mul(amount)});
 
       toast.info(<>
@@ -125,8 +126,11 @@ export default class Dapp extends React.Component<Props, State> {
         Success!<br />
         <a href={this.generateTransactionUrl(receipt.transactionHash)} target="_blank" rel="noopener">View on {this.state.networkConfig.blockExplorer.name}</a>
       </>);
+
+      this.setState({loading: false});
     } catch (e) {
       this.setError(e);
+      this.setState({loading: false});
     }
   }
 
