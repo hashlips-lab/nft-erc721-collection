@@ -2,12 +2,12 @@
 
 pragma solidity >=0.8.9 <0.9.0;
 
-import 'erc721a/contracts/ERC721A.sol';
+import 'erc721a/contracts/extensions/ERC721AQueryable.sol';
 import '@openzeppelin/contracts/access/Ownable.sol';
 import '@openzeppelin/contracts/utils/cryptography/MerkleProof.sol';
 import '@openzeppelin/contracts/security/ReentrancyGuard.sol';
 
-contract YourNftToken is ERC721A, Ownable, ReentrancyGuard {
+contract YourNftToken is ERC721AQueryable, Ownable, ReentrancyGuard {
 
   using Strings for uint256;
 
@@ -70,34 +70,6 @@ contract YourNftToken is ERC721A, Ownable, ReentrancyGuard {
   
   function mintForAddress(uint256 _mintAmount, address _receiver) public mintCompliance(_mintAmount) onlyOwner {
     _safeMint(_receiver, _mintAmount);
-  }
-
-  function walletOfOwner(address _owner) public view returns (uint256[] memory) {
-    uint256 ownerTokenCount = balanceOf(_owner);
-    uint256[] memory ownedTokenIds = new uint256[](ownerTokenCount);
-    uint256 currentTokenId = _startTokenId();
-    uint256 ownedTokenIndex = 0;
-    address latestOwnerAddress;
-
-    while (ownedTokenIndex < ownerTokenCount && currentTokenId < _currentIndex) {
-      TokenOwnership memory ownership = _ownerships[currentTokenId];
-
-      if (!ownership.burned) {
-        if (ownership.addr != address(0)) {
-          latestOwnerAddress = ownership.addr;
-        }
-
-        if (latestOwnerAddress == _owner) {
-          ownedTokenIds[ownedTokenIndex] = currentTokenId;
-
-          ownedTokenIndex++;
-        }
-      }
-
-      currentTokenId++;
-    }
-
-    return ownedTokenIds;
   }
 
   function _startTokenId() internal view virtual override returns (uint256) {
