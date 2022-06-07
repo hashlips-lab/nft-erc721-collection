@@ -91,7 +91,7 @@ export default class Dapp extends React.Component<Props, State> {
       const transaction = await this.contract.mint(amount, {value: this.state.tokenPrice.mul(amount)});
 
       toast.info(<>
-        Transaction sent! Waiting...<br/>
+        Transaction sent! Please wait...<br/>
         <a href={this.generateTransactionUrl(transaction.hash)} target="_blank" rel="noopener">View on {this.state.networkConfig.blockExplorer.name}</a>
       </>);
 
@@ -115,15 +115,15 @@ export default class Dapp extends React.Component<Props, State> {
       const transaction = await this.contract.whitelistMint(amount, Whitelist.getProofForAddress(this.state.userAddress!), {value: this.state.tokenPrice.mul(amount)});
 
       toast.info(<>
-        Transaction sent! Waiting...<br/>
-        <p>{transaction.hash}</p>
+        Transaction sent! Please wait...<br/>
+        <a href={this.generateTransactionUrl(transaction.hash)} target="_blank" rel="noopener">View on {this.state.networkConfig.blockExplorer.name}</a>
       </>);
 
       const receipt = await transaction.wait();
 
       toast.success(<>
         Success!<br />
-        <p>{receipt.transactionHash}</p>
+        <a href={this.generateTransactionUrl(receipt.transactionHash)} target="_blank" rel="noopener">View on {this.state.networkConfig.blockExplorer.name}</a>
       </>);
     } catch (e) {
       this.setError(e);

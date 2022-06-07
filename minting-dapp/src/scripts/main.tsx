@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           autoClose={5000}
           closeOnClick={true}
           pauseOnHover={true}
-          theme={'light'} />
+          theme='light' />
     <Dapp />
   </>, document.getElementById('minting-dapp'));
 });
