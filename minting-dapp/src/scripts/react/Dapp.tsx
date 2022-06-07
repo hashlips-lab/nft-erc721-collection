@@ -92,14 +92,14 @@ export default class Dapp extends React.Component<Props, State> {
 
       toast.info(<>
         Transaction sent! Waiting...<br/>
-        <a href={this.generateTransactionUrl(transaction.hash)}>View on {this.state.networkConfig.blockExplorer.name}</a>
+        <a href={this.generateTransactionUrl(transaction.hash)} target="_blank" rel="noopener">View on {this.state.networkConfig.blockExplorer.name}</a>
       </>);
 
       const receipt = await transaction.wait();
 
       toast.success(<>
         Success!<br />
-        <a href={this.generateTransactionUrl(receipt.transactionHash)}>View on {this.state.networkConfig.blockExplorer.name}</a>
+        <a href={this.generateTransactionUrl(receipt.transactionHash)} target="_blank" rel="noopener">View on {this.state.networkConfig.blockExplorer.name}</a>
       </>);
 
       this.setState({loading: false});
