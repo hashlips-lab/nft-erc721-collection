@@ -139,6 +139,11 @@ input[type=text] {
       @apply cursor-not-allowed;
     }
   }
+
+  &::placeholder {
+    @apply text-txt_input-placeholder_txt;
+    @apply opacity-50;
+  }
 }
 
 label {
