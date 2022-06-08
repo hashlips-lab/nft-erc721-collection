@@ -69,6 +69,7 @@ module.exports = {
           focus_txt: colors.indigo[600],
           focus_bg: colors.slate[50],
           focus_border: colors.indigo[300],
+          placeholder_txt: colors.indigo[600],
         },
         
         // Whitelist proof widget
