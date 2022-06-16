@@ -15,7 +15,7 @@ contract Alkebulantribe is ERC721AQueryable, Ownable, ReentrancyGuard {
   mapping(address => bool) public whitelistClaimed;
 
   string public uriPrefix = '';
-  string public uriSuffix = '.json';
+  string public uriSuffix = '';
   string public hiddenMetadataUri;
   
   uint256 public cost;

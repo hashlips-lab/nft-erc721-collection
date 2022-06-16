@@ -26,8 +26,8 @@ const CollectionConfig: CollectionConfigInterface = {
     price: 0.09,
     maxMintAmountPerTx: 5,
   },
-  contractAddress: "0x4AA3c72f46D96e2B428D87D657e2ff3606F1E62E",
-  marketplaceIdentifier: 'my-nft-token',
+  contractAddress: "0x72BE93EFA61ACD408a1DAC1BAcE616b6cF7a82DC",
+  marketplaceIdentifier: 'Alkebulantribe',
   marketplaceConfig: Marketplaces.openSea,
   whitelistAddresses,
 };
