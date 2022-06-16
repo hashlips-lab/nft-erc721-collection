@@ -2,8 +2,8 @@ node_modules
 .env
 coverage
 coverage.json
-#typechain
+typechain
 
 #Hardhat files
 cache
-#artifacts
+artifacts
