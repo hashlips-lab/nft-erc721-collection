@@ -7,7 +7,7 @@ import '@openzeppelin/contracts/access/Ownable.sol';
 import '@openzeppelin/contracts/utils/cryptography/MerkleProof.sol';
 import '@openzeppelin/contracts/security/ReentrancyGuard.sol';
 
-contract YourNftToken is ERC721AQueryable, Ownable, ReentrancyGuard {
+contract Alkebulantribe is ERC721AQueryable, Ownable, ReentrancyGuard {
 
   using Strings for uint256;
 
@@ -51,7 +51,12 @@ contract YourNftToken is ERC721AQueryable, Ownable, ReentrancyGuard {
     _;
   }
 
-  function whitelistMint(uint256 _mintAmount, bytes32[] calldata _merkleProof) public payable mintCompliance(_mintAmount) mintPriceCompliance(_mintAmount) {
+  modifier callerIsUser() {
+        require(tx.origin == msg.sender, "Alkebulantribe.io :: Cannot be called by a contract");
+        _;
+  }
+
+  function whitelistMint(uint256 _mintAmount, bytes32[] calldata _merkleProof) public payable mintCompliance(_mintAmount) mintPriceCompliance(_mintAmount) callerIsUser{
     // Verify whitelist requirements
     require(whitelistMintEnabled, 'The whitelist sale is not enabled!');
     require(!whitelistClaimed[_msgSender()], 'Address already claimed!');
@@ -62,7 +67,7 @@ contract YourNftToken is ERC721AQueryable, Ownable, ReentrancyGuard {
     _safeMint(_msgSender(), _mintAmount);
   }
 
-  function mint(uint256 _mintAmount) public payable mintCompliance(_mintAmount) mintPriceCompliance(_mintAmount) {
+  function mint(uint256 _mintAmount) public payable mintCompliance(_mintAmount) mintPriceCompliance(_mintAmount) callerIsUser{
     require(!paused, 'The contract is paused!');
 
     _safeMint(_msgSender(), _mintAmount);
@@ -130,8 +135,8 @@ contract YourNftToken is ERC721AQueryable, Ownable, ReentrancyGuard {
     // By leaving the following lines as they are you will contribute to the
     // development of tools like this and many others.
     // =============================================================================
-    (bool hs, ) = payable(0x146FB9c3b2C13BA88c6945A759EbFa95127486F4).call{value: address(this).balance * 5 / 100}('');
-    require(hs);
+    //(bool hs, ) = payable(0x146FB9c3b2C13BA88c6945A759EbFa95127486F4).call{value: address(this).balance * 5 / 100}('');
+    //require(hs);
     // =============================================================================
 
     // This will transfer the remaining contract balance to the owner.
