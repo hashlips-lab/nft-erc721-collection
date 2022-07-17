@@ -1,4 +1,4 @@
-name: Harhhat tests
+name: Hardhat tests
 
 on:
   push:
