@@ -20,20 +20,24 @@ This project was created for educational purposes, please refer to the [LICENCE]
 
 |Lesson ID|Description|Video link|
 |---|---|---|
-|`01a`|Basic setup on **Windows 10**|https://youtu.be/zjlg-0622PU|
-|`01b`|Basic setup on **macOS Catalina (Intel-based)**|https://youtu.be/acqXzKN5Xys|
-|`01c`|Basic setup on **Linux**|https://youtu.be/imuqi6Vg3Zw|
-|`02`|Speedrun: create and deploy a smart contract + DAPP (v1.x)|https://youtu.be/VpXJZSqLO8A|
-|`03`|The smart contract project|https://youtu.be/XToWWExBLXE|
-|`04`|The minting DAPP project|https://youtu.be/gs9mVwkn8u4|
-|`05`|Configuration and security|https://youtu.be/pkA86GHU_xw|
-|`06`|Managing the collection without leaving Visual Studio Code|https://youtu.be/yOVKEeRMJSs|
-|`07`|Managing the contract using Truffle Dashboard|https://youtu.be/fwdIA5UuPmM|
-|`08`|Running smart contract functions manually on the block explorer|https://youtu.be/zhvTJhBbtnE|
-|`09`|Customizing the look and feel of the DAPP|https://youtu.be/GoDp6yZAY9A|
-|`10`|Deploying the DAPP|https://youtu.be/uUrbIXUgVz4|
+|`00a`|Basic setup on **Windows 10**|https://youtu.be/zjlg-0622PU|
+|`00b`|Basic setup on **macOS Catalina (Intel-based)**|https://youtu.be/acqXzKN5Xys|
+|`00c`|Basic setup on **Linux**|https://youtu.be/imuqi6Vg3Zw|
+|`01`|Speedrun: create and deploy a smart contract + DAPP (v2.x)|https://youtu.be/AFrsJRLrZEM|
+|`02`|The smart contract project|https://youtu.be/XToWWExBLXE|
+|`03`|The minting DAPP project|https://youtu.be/gs9mVwkn8u4|
+|`04`|Configuration and security|https://youtu.be/pkA86GHU_xw|
+|`05`|Managing the collection without leaving Visual Studio Code|https://youtu.be/yOVKEeRMJSs|
+|`06`|Managing the contract using Truffle Dashboard|https://youtu.be/fwdIA5UuPmM|
+|`07`|Running smart contract functions manually on the block explorer|https://youtu.be/zhvTJhBbtnE|
+|`08`|Customizing the look and feel of the DAPP|https://youtu.be/GoDp6yZAY9A|
+|`09`|Deploying the DAPP|https://youtu.be/uUrbIXUgVz4|
 
-_More videos coming soon..._
+## Legacy tutorials
+
+|Description|Video link|
+|---|---|
+|Speedrun: create and deploy a smart contract + DAPP (v1.x)|https://youtu.be/VpXJZSqLO8A|
 
 ## Requirements
 
