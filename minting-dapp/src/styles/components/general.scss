@@ -28,127 +28,127 @@ strong {
 
 main {
   @apply flex flex-col;
-}
 
-#logo {
-  @apply m-auto;
-  @apply w-full;
-  @apply max-w-md;
-}
+  #logo {
+    @apply m-auto;
+    @apply w-full;
+    @apply max-w-md;
+  }
 
-span.emoji {
-  @apply text-2xl;
-}
+  span.emoji {
+    @apply text-2xl;
+  }
 
-.error {
-  @apply flex flex-col;
-  @apply rounded-lg;
-  @apply p-3;
-  
-  @apply text-error-txt text-sm;
-  @apply bg-error-bg;
-  @apply border border-error-border;
-  @apply shadow;
+  .error {
+    @apply flex flex-col;
+    @apply rounded-lg;
+    @apply p-3;
+    
+    @apply text-error-txt text-sm;
+    @apply bg-error-bg;
+    @apply border border-error-border;
+    @apply shadow;
 
-  &::before {
-    content: 'Error';
+    &::before {
+      content: 'Error';
 
-    @apply font-semibold;
-    @apply text-base;
+      @apply font-semibold;
+      @apply text-base;
+    }
+
+    button {
+      @apply inline-block;
+      @apply mt-3 ml-auto;
+      @apply px-2 py-1;
+      @apply rounded-md;
+
+      @apply font-semibold;
+      @apply text-btn_error-txt text-xs;
+      @apply bg-btn_error-bg;
+      @apply border-btn_error-border;
+
+      &:hover {
+        @apply text-btn_error-hover_txt;
+        @apply bg-btn_error-hover_bg;
+        @apply border-btn_error-hover_border;
+      }
+    }
   }
 
   button {
-    @apply inline-block;
-    @apply mt-3 ml-auto;
-    @apply px-2 py-1;
-    @apply rounded-md;
+    @apply py-2 px-6;
 
+    @apply rounded-full;
+    
     @apply font-semibold;
-    @apply text-btn_error-txt text-xs;
-    @apply bg-btn_error-bg;
-    @apply border-btn_error-border;
+    @apply text-btn-txt;
+    @apply bg-btn-bg;
+    @apply border border-btn-border;
+    @apply shadow-sm;
 
     &:hover {
-      @apply text-btn_error-hover_txt;
-      @apply bg-btn_error-hover_bg;
-      @apply border-btn_error-hover_border;
+      @apply text-btn-hover_txt;
+      @apply bg-btn-hover_bg;
+      @apply border-btn-hover_border;
+    }
+
+    &.primary {
+      @apply text-btn_primary-txt;
+      @apply bg-btn_primary-bg;
+      @apply border-btn_primary-border;
+
+      &:hover {
+        @apply text-btn_primary-hover_txt;
+        @apply bg-btn_primary-hover_bg;
+        @apply border-btn_primary-hover_border;
+      }
+
+      &:disabled {
+        @apply opacity-30;
+
+        &:hover {
+          @apply cursor-not-allowed;
+        }
+      }
     }
   }
-}
 
-button {
-  @apply py-2 px-6;
+  input[type=text] {
+    @apply py-2 px-4;
 
-  @apply rounded-full;
-  
-  @apply font-semibold;
-  @apply text-btn-txt;
-  @apply bg-btn-bg;
-  @apply border border-btn-border;
-  @apply shadow-sm;
+    @apply rounded-full;
+    
+    @apply font-mono font-semibold;
+    @apply text-txt_input-txt;
+    @apply bg-txt_input-bg;
+    @apply border border-txt_input-border;
+    @apply shadow-sm;
+    @apply outline-none;
 
-  &:hover {
-    @apply text-btn-hover_txt;
-    @apply bg-btn-hover_bg;
-    @apply border-btn-hover_border;
-  }
-
-  &.primary {
-    @apply text-btn_primary-txt;
-    @apply bg-btn_primary-bg;
-    @apply border-btn_primary-border;
-
-    &:hover {
-      @apply text-btn_primary-hover_txt;
-      @apply bg-btn_primary-hover_bg;
-      @apply border-btn_primary-hover_border;
+    &:focus {
+      @apply text-txt_input-focus_txt;
+      @apply bg-txt_input-focus_bg;
+      @apply border-txt_input-focus_border;
     }
 
     &:disabled {
-      @apply opacity-30;
+      @apply opacity-50;
 
       &:hover {
         @apply cursor-not-allowed;
       }
     }
-  }
-}
 
-input[type=text] {
-  @apply py-2 px-4;
-
-  @apply rounded-full;
-  
-  @apply font-mono font-semibold;
-  @apply text-txt_input-txt;
-  @apply bg-txt_input-bg;
-  @apply border border-txt_input-border;
-  @apply shadow-sm;
-  @apply outline-none;
-
-  &:focus {
-    @apply text-txt_input-focus_txt;
-    @apply bg-txt_input-focus_bg;
-    @apply border-txt_input-focus_border;
-  }
-
-  &:disabled {
-    @apply opacity-50;
-
-    &:hover {
-      @apply cursor-not-allowed;
+    &::placeholder {
+      @apply text-txt_input-placeholder_txt;
+      @apply opacity-50;
     }
   }
 
-  &::placeholder {
-    @apply text-txt_input-placeholder_txt;
-    @apply opacity-50;
+  label {
+    @apply mt-4 mb-1 ml-1;
+
+    @apply font-semibold;
+    @apply text-label text-sm;
   }
-}
-
-label {
-  @apply mt-4 mb-1 ml-1;
-
-  @apply font-semibold;
-  @apply text-label text-sm;
 }

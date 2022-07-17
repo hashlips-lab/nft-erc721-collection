@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', async () => {
           closeOnClick={true}
           pauseOnHover={true}
           theme='light' />
+  </>, document.getElementById('notifications'));
+
+  ReactDOM.render(<>
     <Dapp />
   </>, document.getElementById('minting-dapp'));
 });
