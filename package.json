@@ -3,7 +3,7 @@
   "description": "An all-in-one solution for ERC721 collections.",
   "author": "Marco Lipparini <developer@liarco.net>",
   "license": "MIT",
-  "version": "2.4.1",
+  "version": "2.4.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/hashlips-lab/nft-erc721-collection.git"
