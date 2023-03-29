@@ -18,7 +18,7 @@
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
     "dotenv": "^10.0.0",
-    "erc721a": "^3.0.0",
+    "erc721a": "^4.2.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
@@ -32,14 +32,14 @@
     "hardhat-gas-reporter": "^1.0.7",
     "keccak256": "^1.0.6",
     "merkletreejs": "^0.2.27",
+    "operator-filter-registry": "^1.0.0",
     "prettier": "^2.5.1",
     "prettier-plugin-solidity": "^1.0.0-beta.19",
     "solhint": "^3.3.6",
-    "solidity-coverage": "^0.7.17",
+    "solidity-coverage": "^0.8.2",
     "ts-node": "^10.4.0",
     "typechain": "^5.2.0",
-    "typescript": "^4.5.4",
-    "operator-filter-registry": "^1.0.0"
+    "typescript": "^4.5.4"
   },
   "scripts": {
     "accounts": "hardhat accounts",
