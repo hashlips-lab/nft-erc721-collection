@@ -1,13 +1,16 @@
 // SPDX-License-Identifier: MIT
+// Modified by datboi1337 to make compliant with Opensea Operator Filter Registry
 
-pragma solidity >=0.8.9 <0.9.0;
+pragma solidity >=0.8.13 <0.9.0;
 
 import 'erc721a/contracts/extensions/ERC721AQueryable.sol';
 import '@openzeppelin/contracts/access/Ownable.sol';
 import '@openzeppelin/contracts/utils/cryptography/MerkleProof.sol';
+import "@openzeppelin/contracts/utils/Strings.sol";
 import '@openzeppelin/contracts/security/ReentrancyGuard.sol';
+import 'operator-filter-registry/src/DefaultOperatorFilterer.sol';
 
-contract YourNftToken is ERC721AQueryable, Ownable, ReentrancyGuard {
+contract YourNftToken is ERC721AQueryable, Ownable, ReentrancyGuard, DefaultOperatorFilterer {
 
   using Strings for uint256;
 
@@ -40,6 +43,7 @@ contract YourNftToken is ERC721AQueryable, Ownable, ReentrancyGuard {
     setHiddenMetadataUri(_hiddenMetadataUri);
   }
 
+  // ~~~~~~~~~~~~~~~~~~~~ Modifiers ~~~~~~~~~~~~~~~~~~~~
   modifier mintCompliance(uint256 _mintAmount) {
     require(_mintAmount > 0 && _mintAmount <= maxMintAmountPerTx, 'Invalid mint amount!');
     require(totalSupply() + _mintAmount <= maxSupply, 'Max supply exceeded!');
@@ -51,6 +55,7 @@ contract YourNftToken is ERC721AQueryable, Ownable, ReentrancyGuard {
     _;
   }
 
+  // ~~~~~~~~~~~~~~~~~~~~ Mint Functions ~~~~~~~~~~~~~~~~~~~~
   function whitelistMint(uint256 _mintAmount, bytes32[] calldata _merkleProof) public payable mintCompliance(_mintAmount) mintPriceCompliance(_mintAmount) {
     // Verify whitelist requirements
     require(whitelistMintEnabled, 'The whitelist sale is not enabled!');
@@ -68,15 +73,21 @@ contract YourNftToken is ERC721AQueryable, Ownable, ReentrancyGuard {
     _safeMint(_msgSender(), _mintAmount);
   }
   
-  function mintForAddress(uint256 _mintAmount, address _receiver) public mintCompliance(_mintAmount) onlyOwner {
+  function mintForAddress(uint256 _mintAmount, address _receiver) public onlyOwner {
+    require(totalSupply() + _mintAmount <= maxSupply, 'Max supply exceeded!');
     _safeMint(_receiver, _mintAmount);
   }
 
+  // ~~~~~~~~~~~~~~~~~~~~ Various checks ~~~~~~~~~~~~~~~~~~~~
   function _startTokenId() internal view virtual override returns (uint256) {
     return 1;
   }
 
-  function tokenURI(uint256 _tokenId) public view virtual override returns (string memory) {
+  function _baseURI() internal view virtual override(ERC721A) returns (string memory) {
+    return uriPrefix;
+  }
+
+  function tokenURI(uint256 _tokenId) public view virtual override(ERC721A, IERC721A) returns (string memory) {
     require(_exists(_tokenId), 'ERC721Metadata: URI query for nonexistent token');
 
     if (revealed == false) {
@@ -89,6 +100,7 @@ contract YourNftToken is ERC721AQueryable, Ownable, ReentrancyGuard {
         : '';
   }
 
+  // ~~~~~~~~~~~~~~~~~~~~ onlyOwner Functions ~~~~~~~~~~~~~~~~~~~~
   function setRevealed(bool _state) public onlyOwner {
     revealed = _state;
   }
@@ -125,6 +137,28 @@ contract YourNftToken is ERC721AQueryable, Ownable, ReentrancyGuard {
     whitelistMintEnabled = _state;
   }
 
+  // ~~~~~~~~~~~~~~~~~~~~ Opensea Operator Filter Registry Functions ~~~~~~~~~~~~~~~~~~~~
+  function setApprovalForAll(address operator, bool approved) public override(ERC721A, IERC721A) onlyAllowedOperatorApproval(operator) {
+      super.setApprovalForAll(operator, approved);
+  }
+
+  function approve(address operator, uint256 tokenId) public payable override(ERC721A, IERC721A) onlyAllowedOperatorApproval(operator) {
+      super.approve(operator, tokenId);
+  }
+
+  function transferFrom(address from, address to, uint256 tokenId) public payable override(ERC721A, IERC721A) onlyAllowedOperator(from) {
+    super.transferFrom(from, to, tokenId);
+  }
+
+  function safeTransferFrom(address from, address to, uint256 tokenId) public payable override(ERC721A, IERC721A) onlyAllowedOperator(from) {
+    super.safeTransferFrom(from, to, tokenId);
+  }
+
+  function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory data) public payable override(ERC721A, IERC721A) onlyAllowedOperator(from) {
+    super.safeTransferFrom(from, to, tokenId, data);
+  }
+
+  // ~~~~~~~~~~~~~~~~~~~~ Withdraw Functions ~~~~~~~~~~~~~~~~~~~~
   function withdraw() public onlyOwner nonReentrant {
     // This will pay HashLips Lab Team 5% of the initial sale.
     // By leaving the following lines as they are you will contribute to the
@@ -140,9 +174,5 @@ contract YourNftToken is ERC721AQueryable, Ownable, ReentrancyGuard {
     (bool os, ) = payable(owner()).call{value: address(this).balance}('');
     require(os);
     // =============================================================================
-  }
-
-  function _baseURI() internal view virtual override returns (string memory) {
-    return uriPrefix;
   }
 }
