@@ -10,5 +10,6 @@
   },
   "scripts": {
     "build-dapp": "cd smart-contract; yarn; yarn compile; cd ../minting-dapp; yarn; yarn build"
-  }
+  },
+  "packageManager": "yarn@1.22.19"
 }
