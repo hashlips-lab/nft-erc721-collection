@@ -12,18 +12,20 @@ module.exports = {
         // General
         page: {
           from_bg: colors.slate[100],
-          to_bg: colors.slate[200],
+          to_bg: colors.stone[200],
         },
         titles: colors.indigo[600],
         links: {
-          txt: colors.indigo[600],
+          txt: colors.stone[600],
           hover_txt: colors.indigo[700],
         },
         loading_spinner: colors.indigo[500],
+        // popups include 1) the wallet address grid 2) total price column, 3) mint amount column, 
+        // 4) borders applies to wallet address and mint div's
         popups: {
-          bg: colors.white,
-          txt: colors.slate[800],
-          internal_border: colors.slate[200],
+          bg: colors.stone[400],
+          txt: colors.stone[800],
+          internal_border: colors.stone[500],
         },
         warning: {
           txt: colors.slate[800],
@@ -36,22 +38,22 @@ module.exports = {
           border: colors.red[200],
         },
 
-        // Inputs
+        // Inputs - inlude '-' an '+'
         btn: {
           txt: colors.slate[800],
-          bg: colors.white,
-          border: colors.slate[200],
+          bg: colors.stone[400],
+          border: colors.stone[400],
           hover_txt: colors.slate[800],
-          hover_bg: colors.slate[100],
+          hover_bg: colors.stone[500],
           hover_border: colors.slate[200],
         },
         btn_primary: {
           txt: colors.white,
-          bg: colors.indigo[500],
+          bg: colors.green[500],
           border: colors.indigo[500],
           hover_txt: colors.white,
-          hover_bg: colors.indigo[600],
-          hover_border: colors.indigo[600],
+          hover_bg: colors.green[600],
+          hover_border: colors.green[600],
         },
         btn_error: {
           txt: colors.white,
@@ -61,15 +63,16 @@ module.exports = {
           hover_bg: colors.red[600],
           hover_border: colors.red[600],
         },
-        label: colors.indigo[600],
+        // applies to wallet/supply div
+        label: colors.stone[600],
         txt_input: {
-          txt: colors.indigo[600],
+          txt: colors.stone[800],
           bg: colors.white,
           border: colors.slate[200],
-          focus_txt: colors.indigo[600],
+          focus_txt: colors.stone[600],
           focus_bg: colors.slate[50],
           focus_border: colors.indigo[300],
-          placeholder_txt: colors.indigo[600],
+          placeholder_txt: colors.stone[600],
         },
         
         // Whitelist proof widget
@@ -78,8 +81,8 @@ module.exports = {
           bg: colors.indigo[100],
         },
 
-        // Mint widget
-        token_preview: colors.indigo[200],
+        // Mint widget the preview column
+        token_preview: colors.stone[400],
       },
     },
   },

@@ -12,8 +12,8 @@ const CollectionConfig: CollectionConfigInterface = {
   contractName: 'YourNftToken',
   tokenName: 'My NFT Token',
   tokenSymbol: 'MNT',
-  hiddenMetadataUri: 'ipfs://__CID__/hidden.json',
-  maxSupply: 10000,
+  hiddenMetadataUri: 'ipfs://QmVYuVWPuefNK6ze4YGR4eGp3HZ4HBFPRXcqGZwG1kQZig/hidden.json',
+  maxSupply: 6969,
   whitelistSale: {
     price: 0.05,
     maxMintAmountPerTx: 1,
@@ -23,10 +23,10 @@ const CollectionConfig: CollectionConfigInterface = {
     maxMintAmountPerTx: 2,
   },
   publicSale: {
-    price: 0.09,
+    price: 0.042069, // 0.00094511, -> $1 USD
     maxMintAmountPerTx: 5,
   },
-  contractAddress: null,
+  contractAddress: '0x3E5AFDE720c7253F65405c71e7bd7b6f2466f40F',
   marketplaceIdentifier: 'my-nft-token',
   marketplaceConfig: Marketplaces.openSea,
   whitelistAddresses,
